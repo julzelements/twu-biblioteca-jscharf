@@ -43,12 +43,17 @@ public class ExampleTest {
     public void testMockUserInput() throws Exception {
         capturer.start();
         MockUserInput mockUser = new MockUserInput();
-        mockUser.getMockUserInput("What is your name", "Julian");
+        mockUser.getString("What is your name", "Julian");
         String consoleOutput = capturer.stop();
         assertEquals(consoleOutput, "What is your name\n" +
                 "Julian\n");
     }
 
+    @Test
+    public void testLibraryChoice() throws Exception {
+        MockUserInput mockInput = new MockUserInput();
+
+    }
 
     @After
     public void tearDown() throws Exception {
