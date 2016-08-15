@@ -23,6 +23,9 @@ public class BibliotecaApp {
                 "See book details? type: 'd'\n" +
                 "Quit? type q", null);
         if (choice.equals("b")) borrowItem();
+        if (choice.equals("r")) returnItem();
+        if (choice.equals("d")) showLibraryDetails();
+        if (choice.equals("q")) quit();
     }
 
     public void borrowItem() {
@@ -31,10 +34,16 @@ public class BibliotecaApp {
         //TODO user can quit
     }
 
-    public void returnItem(String item){}
+    public void returnItem() {
+        System.out.println("User wants to return Item");
+    }
 
     public void showLibraryDetails() {
         displayLibrary();
+    }
+
+    public void quit() {
+        System.out.println("User wants to quit");
     }
 
 
