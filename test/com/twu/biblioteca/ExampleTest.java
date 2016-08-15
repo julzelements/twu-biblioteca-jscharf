@@ -42,7 +42,7 @@ public class ExampleTest {
     @Test
     public void testMockUserInput() throws Exception {
         capturer.start();
-        MockUser mockUser = new MockUser();
+        MockUserInput mockUser = new MockUserInput();
         mockUser.getMockUserInput("What is your name", "Julian");
         String consoleOutput = capturer.stop();
         assertEquals(consoleOutput, "What is your name\n" +
