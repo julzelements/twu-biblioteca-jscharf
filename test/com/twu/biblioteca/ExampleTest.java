@@ -19,9 +19,9 @@ public class ExampleTest {
     @Test
     public void testWelcomePage() throws Exception {
         capturer.start();
-        app.run();
+        app.welcomeMessage();
         String greeting = capturer.stop();
-        assertEquals(greeting, "Hello! \nWelcome to Biblioteca.\n");
+        assertEquals(greeting, "Hello! \nWelcome to Biblioteca.\n\n");
     }
 
     @Test
@@ -49,11 +49,6 @@ public class ExampleTest {
                 "Julian\n");
     }
 
-    @Test
-    public void testWelcomeOptions() throws Exception {
-        MockUser mockUser = new MockUser();
-        String returnedOption = app.welcomeOptions();
-    }
 
     @After
     public void tearDown() throws Exception {

@@ -8,6 +8,7 @@ public class BibliotecaApp {
     public void run(){
         userInput = new UserInput();
         welcomeMessage();
+        welcomeOptions(userInput);
 
     }
 
@@ -16,10 +17,14 @@ public class BibliotecaApp {
     }
 
     public void welcomeOptions(UserInput userInput) {
-        userInput.getString("What would you like to do?\n" +
+        String choice = userInput.getString("What would you like to do?\n" +
                 "Borrow a book? type: 'b'\n" +
                 "Return a book? type: 'r'\n" +
-                "See book details? type: 'd'\n");
+                "See book details? type: 'd'\n" +
+                "Quit? type q");
+        if (choice.equals("b")) {
+            System.out.println("User wants to borrow a book");
+        }
     }
 
     public void displayLibrary() {
