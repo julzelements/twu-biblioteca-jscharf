@@ -26,8 +26,6 @@ public class ExampleTest {
 
     @Test
     public void testDisplayLibrary() {
-        BibliotecaApp app = new BibliotecaApp();
-        ConsoleOutputCapturer capturer = new ConsoleOutputCapturer();
         capturer.start();
         app.displayLibrary();
         String library = capturer.stop();
@@ -40,6 +38,17 @@ public class ExampleTest {
                 "Leviathan Wakes, James S. A. Corey\n";
         assertEquals(testLibrary, library);
     }
+
+    @Test
+    public void testMockUserInput() throws Exception {
+        capturer.start();
+        MockUser mockUser = new MockUser();
+        mockUser.getUserInput("What is your name", "Julian");
+        String consoleOutput = capturer.stop();
+        assertEquals(consoleOutput, "What is your name\n" +
+                "Julian\n");
+    }
+
 
 
     @After
