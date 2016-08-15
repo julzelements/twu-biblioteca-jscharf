@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 import java.io.*;
 
-public class UserInput extends AbstractUserInput {
+public class UserInput {
 
 
 

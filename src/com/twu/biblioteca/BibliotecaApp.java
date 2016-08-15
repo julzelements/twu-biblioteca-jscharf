@@ -16,16 +16,28 @@ public class BibliotecaApp {
         System.out.println("Hello! \nWelcome to Biblioteca.\n");
     }
 
-    public void welcomeOptions(AbstractUserInput userInput) {
+    public void welcomeOptions(UserInput userInput) {
         String choice = userInput.getString("What would you like to do?\n" +
                 "Borrow a book? type: 'b'\n" +
                 "Return a book? type: 'r'\n" +
                 "See book details? type: 'd'\n" +
                 "Quit? type q", null);
-        if (choice.equals("b")) {
-            System.out.println("User wants to borrow a book");
-        }
+        if (choice.equals("b")) borrowItem();
     }
+
+    public void borrowItem() {
+        System.out.println("User wants to borrow");
+        //TODO borrow fail or succeed
+        //TODO user can quit
+    }
+
+    public void returnItem(String item){}
+
+    public void showLibraryDetails() {
+        displayLibrary();
+    }
+
+
 
     public void displayLibrary() {
         System.out.println("Bibliotec Book Library\n" +

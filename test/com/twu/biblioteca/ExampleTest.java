@@ -49,11 +49,6 @@ public class ExampleTest {
                 "Julian\n");
     }
 
-    @Test
-    public void testLibraryChoice() throws Exception {
-        MockUserInput mockInput = new MockUserInput();
-
-    }
 
     @After
     public void tearDown() throws Exception {
