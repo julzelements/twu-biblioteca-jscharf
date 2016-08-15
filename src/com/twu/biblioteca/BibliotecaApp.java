@@ -21,7 +21,7 @@ public class BibliotecaApp {
                 "Borrow a book? type: 'b'\n" +
                 "Return a book? type: 'r'\n" +
                 "See book details? type: 'd'\n" +
-                "Quit? type q", null);
+                "Quit? type q\n");
         if (choice.equals("b")) borrowItem();
         if (choice.equals("r")) returnItem();
         if (choice.equals("d")) showLibraryDetails();

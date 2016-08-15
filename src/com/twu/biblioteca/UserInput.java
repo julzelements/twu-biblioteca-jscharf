@@ -5,7 +5,7 @@ public class UserInput {
 
 
 
-    public String getString(String prompt, String userInput) {
+    public String getString(String prompt) {
         String inputLine = null;
         System.out.print(prompt + " ");
         try {

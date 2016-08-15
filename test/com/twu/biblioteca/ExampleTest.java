@@ -49,7 +49,6 @@ public class ExampleTest {
                 "Julian\n");
     }
 
-
     @After
     public void tearDown() throws Exception {
         app = null;
