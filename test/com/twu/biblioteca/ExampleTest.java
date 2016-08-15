@@ -49,7 +49,11 @@ public class ExampleTest {
                 "Julian\n");
     }
 
-
+    @Test
+    public void testWelcomeOptions() throws Exception {
+        MockUser mockUser = new MockUser();
+        String returnedOption = app.welcomeOptions();
+    }
 
     @After
     public void tearDown() throws Exception {

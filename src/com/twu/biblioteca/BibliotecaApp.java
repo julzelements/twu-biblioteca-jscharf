@@ -8,12 +8,19 @@ public class BibliotecaApp {
     public void run(){
         userInput = new UserInput();
         welcomeMessage();
+
     }
 
     public void welcomeMessage() {
         System.out.println("Hello! \nWelcome to Biblioteca.\n");
     }
 
+    public void welcomeOptions(UserInput userInput) {
+        userInput.getString("What would you like to do?\n" +
+                "Borrow a book? type: 'b'\n" +
+                "Return a book? type: 'r'\n" +
+                "See book details? type: 'd'\n");
+    }
 
     public void displayLibrary() {
         System.out.println("Bibliotec Book Library\n" +
