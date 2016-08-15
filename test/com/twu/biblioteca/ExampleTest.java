@@ -31,8 +31,10 @@ public class ExampleTest {
         capturer.start();
         app.displayLibrary();
         String library = capturer.stop();
-        String testLibrary = "Books Library\n" +
+        String testLibrary = "Bibliotec Book Library\n" +
+                "----------------------------------------\n" +
                 "Title, Author\n" +
+                "----------------------------------------\n" +
                 "The Witches, Roald Dahl\n" +
                 "The God of Small Things, Arundhati Roy\n" +
                 "Leviathan Wakes, James S. A. Corey\n";
