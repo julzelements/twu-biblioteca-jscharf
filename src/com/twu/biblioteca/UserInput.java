@@ -14,8 +14,5 @@ public class UserInput {
         }
         return inputLine;
     }
-    public String mainMenu() {
-       return getString("This is the main menu\nWould you like to:\nBorrow a book: b\nReturn a book:r\nQuit:q");
-    }
 }
 
