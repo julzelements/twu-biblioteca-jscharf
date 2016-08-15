@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 import java.io.*;
-/**
- * Created by jscharf on 12/08/2016.
- */
+
 public class UserInput {
     public String getString(String prompt) {
         String inputLine = null;
