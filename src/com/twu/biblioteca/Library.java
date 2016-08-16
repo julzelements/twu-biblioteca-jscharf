@@ -16,17 +16,19 @@ public class Library {
 
     public String getTitleAuthorList() {
         String titles = new String();
-        for (Book temp: libraryList) {
+        for (Book temp : libraryList) {
             titles = titles + temp.title + ", " + temp.author + "\n";
         }
         return titles;
     }
 
-//    public void remove(String itemTitle) {
-//        for (Book temp: libraryList) {
-//            if (temp.compareTitle(itemTitle)) {
-//                libraryList.
-//            }
-//        }
-//    }
+    public void remove(String bookTitle) {
+        for (int i = 0; i < libraryList.size(); i++) {
+            Book currentBook = libraryList.get(i);
+            if (currentBook.title.equals(bookTitle)) {
+                libraryList.remove(i);
+            }
+        }
+
+    }
 }

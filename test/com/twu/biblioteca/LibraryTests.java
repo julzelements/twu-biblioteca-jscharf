@@ -36,7 +36,17 @@ public class LibraryTests {
         library.remove("Leviathan Wakes");
         String titles = library.getTitleAuthorList();
         String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
-                                "The Witches, Roald Dahl\n";
+                "The Witches, Roald Dahl\n";
+        assertEquals(titles, expectedTitles);
+
+    }
+
+    @Test
+    public void testRemoveTwoBooksFromLibrary() throws Exception {
+        library.remove("Leviathan Wakes");
+        library.remove("The God of Small Things");
+        String titles = library.getTitleAuthorList();
+        String expectedTitles = "The Witches, Roald Dahl\n";
         assertEquals(titles, expectedTitles);
 
     }
