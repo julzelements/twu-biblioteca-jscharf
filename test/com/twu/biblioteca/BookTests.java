@@ -1,10 +1,26 @@
 package com.twu.biblioteca;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BookTests {
+
+    Book theWitches;
+    Book theGodOfSmallThings;
+    Book theWitches2;
+    Book theGodOfSmallThings2;
+
+    @Before
+    public void setUp() throws Exception {
+        theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        theGodOfSmallThings2 = new Book("The God of Small Things","Arundhati Roy","1997");
+        theWitches2 = new Book("The Witches", "Roald Dahl", "1983");
+
+    }
 
     @Test
     public void testBook() throws Exception {
@@ -15,28 +31,22 @@ public class BookTests {
     }
 
     @Test
-    public void testBookToString() throws Exception {
-        Book book = new Book("The Witches", "Roald Dahl", "1983");
-        String bookTitle = "Book{title='The Witches'}";
-        String bookToString = book.toString();
-        assertEquals(bookTitle, bookToString);
-    }
-
-    @Test
     public void testCompareSimilarBooks() throws Exception {
-        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
-        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        Book theGodOfSmallThings2 = new Book("The God of Small Things","Arundhati Roy","1997");
-        Book theWitches2 = new Book("The Witches", "Roald Dahl", "1983");
-        assertTrue(theGodOfSmallThings.compareTitle(theGodOfSmallThings2));
-        assertTrue(theWitches.compareTitle(theWitches2));
+        assertTrue(theGodOfSmallThings.compareTitle(theGodOfSmallThings2.title));
+        assertTrue(theWitches.compareTitle(theWitches2.title));
     }
 
     @Test
     public void testCompareDifferentBooks() throws Exception {
-        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
-        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        assertFalse(theGodOfSmallThings.compareTitle(theWitches));
+        assertFalse(theGodOfSmallThings.compareTitle(theWitches.title));
     }
 
+    @After
+    public void tearDown() throws Exception {
+        theWitches = null;
+        theGodOfSmallThings = null;
+        theWitches2 = null;
+        theGodOfSmallThings2 = null;
+
+    }
 }

@@ -14,15 +14,8 @@ public class Book {
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                '}';
-    }
-
-    public Boolean compareTitle(Book book) {
-        if (book.title.equals(this.title)) return true;
+    public Boolean compareTitle(String title) {
+        if (title.equals(this.title)) return true;
         return false;
     }
 

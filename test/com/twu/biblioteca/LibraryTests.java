@@ -31,15 +31,15 @@ public class LibraryTests {
         assertEquals(titles, expectedTitles);
     }
 
-//    @Test
-//    public void testRemoveBookFromLibrary() throws Exception {
-//        library.remove("Leviathan Wakes");
-//        String titles = library.getTitleAuthorList();
-//        String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
-//                                "The Witches, Roald Dahl\n";
-//        assertEquals(titles, expectedTitles);
-//
-//    }
+    @Test
+    public void testRemoveBookFromLibrary() throws Exception {
+        library.remove("Leviathan Wakes");
+        String titles = library.getTitleAuthorList();
+        String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
+                                "The Witches, Roald Dahl\n";
+        assertEquals(titles, expectedTitles);
+
+    }
 
 
 

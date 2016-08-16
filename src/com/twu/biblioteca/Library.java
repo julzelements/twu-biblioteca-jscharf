@@ -22,6 +22,11 @@ public class Library {
         return titles;
     }
 
-
-
+//    public void remove(String itemTitle) {
+//        for (Book temp: libraryList) {
+//            if (temp.compareTitle(itemTitle)) {
+//                libraryList.
+//            }
+//        }
+//    }
 }
