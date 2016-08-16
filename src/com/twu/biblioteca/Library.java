@@ -29,6 +29,5 @@ public class Library {
                 libraryList.remove(i);
             }
         }
-
     }
 }

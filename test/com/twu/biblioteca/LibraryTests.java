@@ -48,9 +48,11 @@ public class LibraryTests {
         String titles = library.getTitleAuthorList();
         String expectedTitles = "The Witches, Roald Dahl\n";
         assertEquals(titles, expectedTitles);
-
     }
 
-
-
+    @Test
+    public void testRemoveNonExistentBookFromLibrary() throws Exception {
+        library.remove("The man who wasn't there");
+        //TODO need to handle requests for incorrect title.
+    }
 }
