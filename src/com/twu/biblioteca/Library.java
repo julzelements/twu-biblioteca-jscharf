@@ -14,13 +14,11 @@ public class Library {
         libraryList.add(book);
     }
 
-    public String listTitles() {
-        String titles = "";
-
+    public String getTitleAuthorList() {
+        String titles = new String();
         for (Book temp: libraryList) {
             titles = titles + temp.title + ", " + temp.author + "\n";
         }
-
         return titles;
     }
 

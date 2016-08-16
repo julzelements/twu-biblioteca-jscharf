@@ -22,7 +22,7 @@ public class LibraryTests {
     public void testAddBooksToLibrary() throws Exception {
         library.add(theGodOfSmallThings);
         library.add(theWitches);
-        String titles = library.listTitles();
+        String titles = library.getTitleAuthorList();
         String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
                                 "The Witches, Roald Dahl\n";
         assertEquals(titles, expectedTitles);
