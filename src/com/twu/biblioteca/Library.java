@@ -1,9 +1,27 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 
-/**
- * Created by jscharf on 16/08/2016.
- */
 public class Library {
+
+    ArrayList<Book> libraryList;
+
+    public Library() {
+        this.libraryList = new ArrayList<Book>();
+    }
+
+    public void add(Book book) {
+        libraryList.add(book);
+    }
+
+    public String listTitles() {
+        String titles = "";
+
+        for (Book temp: libraryList) {
+            titles = titles + temp.title + ", " + temp.author + "\n";
+        }
+
+        return titles;
+    }
 
 }

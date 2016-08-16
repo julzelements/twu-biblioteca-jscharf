@@ -2,10 +2,8 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Created by jscharf on 16/08/2016.
- */
 public class LibraryTests {
 
     Library library;
@@ -15,14 +13,20 @@ public class LibraryTests {
     @Before
     public void setUp() throws Exception {
         library = new Library();
-        theWitches = new Book("The Witches", "Roald Dahl", "1983");
         theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        theWitches = new Book("The Witches", "Roald Dahl", "1983");
 
     }
 
-//    @Test
-//    public void testAddBooksToLibrary() throws Exception {
-//        Library.add(theGodOfSmallThings);
-//        Library.add(theWitches);
-//    }
+    @Test
+    public void testAddBooksToLibrary() throws Exception {
+        library.add(theGodOfSmallThings);
+        library.add(theWitches);
+        String titles = library.listTitles();
+        String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
+                                "The Witches, Roald Dahl\n";
+        assertEquals(titles, expectedTitles);
+    }
+
+
 }
