@@ -13,4 +13,11 @@ public class Book {
         this.author = author;
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

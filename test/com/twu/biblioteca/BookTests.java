@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,5 +14,11 @@ public class BookTests {
         assertEquals(book.year, "1983");
     }
 
-
+    @Test
+    public void testBookToString() throws Exception {
+        Book book = new Book("The Witches", "Roald Dahl", "1983");
+        String bookTitle = "Book{title='The Witches'}";
+        String bookToString = book.toString();
+        assertEquals(bookTitle, bookToString);
+    }
 }

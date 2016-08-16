@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ExampleTest {
+public class AppTests {
     BibliotecaApp app;
     ConsoleOutputCapturer capturer;
 
