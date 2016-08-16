@@ -3,13 +3,16 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
 
     UserInput userInput;
+    Library library;
 
 
     public void run(){
+        library = new Library();
+        initializeLibrary();
+
         userInput = new UserInput();
         welcomeMessage();
         welcomeOptions(userInput);
-
     }
 
     public void welcomeMessage() {
@@ -46,8 +49,6 @@ public class BibliotecaApp {
         System.out.println("User wants to quit");
     }
 
-
-
     public void displayLibrary() {
         System.out.println("Bibliotec Book Library\n" +
                 "----------------------------------------\n" +
@@ -58,5 +59,17 @@ public class BibliotecaApp {
                 "Leviathan Wakes, James S. A. Corey");
     }
 
-//Changes
+    public void initializeLibrary() {
+        //TODO remove the harcoded books and initialize from a file?
+        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
+
+        library.add(theGodOfSmallThings);
+        library.add(theWitches);
+        library.add(leviathanWakes);
+
+    }
+
+
 }
