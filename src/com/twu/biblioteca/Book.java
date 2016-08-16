@@ -20,4 +20,10 @@ public class Book {
                 "title='" + title + '\'' +
                 '}';
     }
+
+    public Boolean compareTitle(Book book) {
+        if (book.title.equals(this.title)) return true;
+        return false;
+    }
+
 }

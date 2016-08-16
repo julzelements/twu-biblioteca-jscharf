@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class BookTests {
 
@@ -21,4 +21,22 @@ public class BookTests {
         String bookToString = book.toString();
         assertEquals(bookTitle, bookToString);
     }
+
+    @Test
+    public void testCompareSimilarBooks() throws Exception {
+        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        Book theGodOfSmallThings2 = new Book("The God of Small Things","Arundhati Roy","1997");
+        Book theWitches2 = new Book("The Witches", "Roald Dahl", "1983");
+        assertTrue(theGodOfSmallThings.compareTitle(theGodOfSmallThings2));
+        assertTrue(theWitches.compareTitle(theWitches2));
+    }
+
+    @Test
+    public void testCompareDifferentBooks() throws Exception {
+        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        assertFalse(theGodOfSmallThings.compareTitle(theWitches));
+    }
+
 }

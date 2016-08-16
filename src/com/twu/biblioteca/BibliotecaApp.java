@@ -20,7 +20,8 @@ public class BibliotecaApp {
     }
 
     public void welcomeOptions(UserInput userInput) {
-        String choice = userInput.getString("What would you like to do?\n" +
+        String choice = userInput.getString(
+                "What would you like to do?\n" +
                 "Borrow a book? type: 'b'\n" +
                 "Return a book? type: 'r'\n" +
                 "See book details? type: 'd'\n" +
@@ -50,13 +51,7 @@ public class BibliotecaApp {
     }
 
     public void displayLibrary() {
-        System.out.println("Bibliotec Book Library\n" +
-                "----------------------------------------\n" +
-                "Title, Author\n" +
-                "----------------------------------------\n" +
-                "The Witches, Roald Dahl\n" +
-                "The God of Small Things, Arundhati Roy\n" +
-                "Leviathan Wakes, James S. A. Corey");
+        System.out.println("Availiable Books:\n" + library.getTitleAuthorList());
     }
 
     public void initializeLibrary() {
