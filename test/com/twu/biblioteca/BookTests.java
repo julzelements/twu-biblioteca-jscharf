@@ -41,6 +41,12 @@ public class BookTests {
         assertFalse(theGodOfSmallThings.compareTitle(theWitches.title));
     }
 
+    @Test
+    public void testCheckedOut() throws Exception {
+        theWitches.checkedOut = true;
+        assertTrue(theWitches.checkedOut);
+    }
+
     @After
     public void tearDown() throws Exception {
         theWitches = null;
