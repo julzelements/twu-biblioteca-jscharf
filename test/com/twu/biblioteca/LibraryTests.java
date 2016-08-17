@@ -33,7 +33,7 @@ public class LibraryTests {
 
     @Test
     public void testRemoveBookFromLibrary() throws Exception {
-        library.remove("Leviathan Wakes");
+        library.borrowItem("Leviathan Wakes");
         String titles = library.getTitleAuthorList();
         String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
                 "The Witches, Roald Dahl\n";
@@ -43,8 +43,8 @@ public class LibraryTests {
 
     @Test
     public void testRemoveTwoBooksFromLibrary() throws Exception {
-        library.remove("Leviathan Wakes");
-        library.remove("The God of Small Things");
+        library.borrowItem("Leviathan Wakes");
+        library.borrowItem("The God of Small Things");
         String titles = library.getTitleAuthorList();
         String expectedTitles = "The Witches, Roald Dahl\n";
         assertEquals(titles, expectedTitles);
@@ -52,7 +52,7 @@ public class LibraryTests {
 
     @Test
     public void testRemoveNonExistentBookFromLibrary() throws Exception {
-        library.remove("The man who wasn't there");
+        library.borrowItem("The man who wasn't there");
         //TODO need to handle requests for incorrect title.
     }
 }
