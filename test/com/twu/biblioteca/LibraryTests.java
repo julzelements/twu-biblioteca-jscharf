@@ -1,8 +1,11 @@
 package com.twu.biblioteca;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class LibraryTests {
 
@@ -52,7 +55,33 @@ public class LibraryTests {
 
     @Test
     public void testRemoveNonExistentBookFromLibrary() throws Exception {
-        library.borrowItem("The man who wasn't there");
+        try {
+            library.borrowItem("The man who wasn't there");
+        } catch (Exception ex) {
+            System.out.println("Book is not in the library");
+        }
         //TODO need to handle requests for incorrect title.
+    }
+
+    @Test
+    public void checkThatTitleNotValid() throws Exception {
+        Boolean exceptionThrown = false;
+        try {
+            library.validTitleCheck("The man who wasn't there");
+        } catch (Exception ex) {
+            exceptionThrown = true;
+        }
+        assertTrue(exceptionThrown);
+    }
+
+    @Test
+    public void checkThatTitleIsValid() throws Exception {
+        Boolean exceptionThrown = false;
+        try {
+            library.validTitleCheck("The Witches");
+        } catch (Exception ex) {
+            exceptionThrown = true;
+        }
+        assertFalse(exceptionThrown);
     }
 }
