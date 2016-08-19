@@ -55,33 +55,22 @@ public class LibraryTests {
 
     @Test
     public void testRemoveNonExistentBookFromLibrary() throws Exception {
-        try {
-            library.borrowItem("The man who wasn't there");
-        } catch (Exception ex) {
-            System.out.println("Book is not in the library");
-        }
-        //TODO need to handle requests for incorrect title.
+        ConsoleOutputCapturer capturer = new ConsoleOutputCapturer();
+        capturer.start();
+        library.borrowItem("The man who wasn't there");
+        String expectedError = capturer.stop();
+        assertEquals(expectedError, "book does not exist in our library\n");
     }
 
     @Test
     public void checkThatTitleNotValid() throws Exception {
-        Boolean exceptionThrown = false;
-        try {
-            library.validTitleCheck("The man who wasn't there");
-        } catch (Exception ex) {
-            exceptionThrown = true;
-        }
-        assertTrue(exceptionThrown);
+        Boolean bookExistsInLibrary = library.validTitleCheck("The man who wasn't there");
+        assertFalse(bookExistsInLibrary);
     }
 
     @Test
     public void checkThatTitleIsValid() throws Exception {
-        Boolean exceptionThrown = false;
-        try {
-            library.validTitleCheck("The Witches");
-        } catch (Exception ex) {
-            exceptionThrown = true;
-        }
-        assertFalse(exceptionThrown);
+        Boolean bookExistsInLibrary = library.validTitleCheck("The Witches");
+        assertTrue(bookExistsInLibrary);
     }
 }

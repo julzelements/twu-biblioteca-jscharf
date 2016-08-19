@@ -26,11 +26,9 @@ public class Library {
     }
 
     public void borrowItem(String bookTitle) throws Exception {
-        if (bookTitle.equals("The man who wasn't there")) {
-            throw new Exception();
+        if (!validTitleCheck(bookTitle)) {
+            System.out.println("book does not exist in our library");
         }
-
-
 
         for (int i = 0; i < libraryList.size(); i++) {
             Book currentBook = libraryList.get(i);
@@ -40,7 +38,7 @@ public class Library {
         }
     }
 
-    public void validTitleCheck(String title) throws Exception {
+    public Boolean validTitleCheck(String title) {
         Boolean bookExistsInLibrary = false;
 
         for (int i = 0; i < libraryList.size(); i++) {
@@ -49,9 +47,6 @@ public class Library {
                 bookExistsInLibrary = true;
             }
         }
-
-        if (!bookExistsInLibrary) {
-            throw new Exception();
-        }
+        return bookExistsInLibrary;
     }
 }
