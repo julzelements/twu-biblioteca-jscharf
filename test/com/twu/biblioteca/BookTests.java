@@ -37,6 +37,12 @@ public class BookTests {
     }
 
     @Test
+    public void testOverrideEquals() throws Exception {
+        assertTrue(theGodOfSmallThings.equals(theGodOfSmallThings2));
+        assertFalse(theGodOfSmallThings.equals(theWitches));
+    }
+
+    @Test
     public void testCompareDifferentBooks() throws Exception {
         assertFalse(theGodOfSmallThings.compareTitle(theWitches.title));
     }

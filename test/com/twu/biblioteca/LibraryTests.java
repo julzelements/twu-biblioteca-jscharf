@@ -73,4 +73,15 @@ public class LibraryTests {
         Boolean bookExistsInLibrary = library.validTitleCheck("The Witches");
         assertTrue(bookExistsInLibrary);
     }
+
+//    @Test
+//    public void returnBookSuccessfully() throws Exception {
+//        library.borrowItem("The Witches");
+//        System.out.println(library.getTitleAuthorList());
+//        library.returnBook("The Witches");
+//        
+//    }
+
+
+
 }

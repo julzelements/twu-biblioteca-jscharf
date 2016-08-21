@@ -21,6 +21,10 @@ public class Book {
         return false;
     }
 
-
-
+    @Override
+    public boolean equals(Object obj) {
+        Book book = (Book) obj;
+        if (title.equals(book.title)) return true;
+        return false;
+    }
 }
