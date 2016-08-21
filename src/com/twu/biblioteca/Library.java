@@ -35,6 +35,7 @@ public class Library {
             Book currentBook = libraryList.get(i);
             if (currentBook.title.equals(bookTitle)) {
                 currentBook.checkedOut = true;
+                System.out.println("The book: " + bookTitle + " has been borrowed");
             }
         }
     }
@@ -46,7 +47,6 @@ public class Library {
             Book currentBook = libraryList.get(i);
             if (currentBook.title.equals(title)) {
                 bookExistsInLibrary = true;
-                System.out.println("The book: " + title + " has been borrowed");
             }
         }
         return bookExistsInLibrary;
