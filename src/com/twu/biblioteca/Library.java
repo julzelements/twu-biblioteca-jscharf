@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class Library {
 
@@ -25,7 +26,7 @@ public class Library {
         return titles;
     }
 
-    public void borrowItem(String bookTitle) throws Exception {
+    public void borrowItem(String bookTitle){
         if (!validTitleCheck(bookTitle)) {
             System.out.println("book does not exist in our library");
         }
@@ -45,6 +46,7 @@ public class Library {
             Book currentBook = libraryList.get(i);
             if (currentBook.title.equals(title)) {
                 bookExistsInLibrary = true;
+                System.out.println("The book: " + title + " has been borrowed");
             }
         }
         return bookExistsInLibrary;

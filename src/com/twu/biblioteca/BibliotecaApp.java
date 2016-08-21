@@ -33,9 +33,8 @@ public class BibliotecaApp {
     }
 
     public void borrowItem() {
-        System.out.println("User wants to borrow");
-        //TODO borrow fail or succeed
-        //TODO user can quit
+        String requestedBook = userInput.getString("type the title of the book you would like to borrow");
+        library.borrowItem(requestedBook);
     }
 
     public void returnItem() {
