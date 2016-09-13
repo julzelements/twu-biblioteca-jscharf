@@ -16,15 +16,26 @@ public class Book {
         this.checkedOut = false;
     }
 
-    public Boolean compareTitle(String title) {
-        if (title.equals(this.title)) return true;
-        return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (title != null ? !title.equals(book.title) : book.title != null) return false;
+        if (author != null ? !author.equals(book.author) : book.author != null) return false;
+        if (year != null ? !year.equals(book.year) : book.year != null) return false;
+        return checkedOut != null ? checkedOut.equals(book.checkedOut) : book.checkedOut == null;
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Book book = (Book) obj;
-        if (title.equals(book.title)) return true;
-        return false;
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + (checkedOut != null ? checkedOut.hashCode() : 0);
+        return result;
     }
 }

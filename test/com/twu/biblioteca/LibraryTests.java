@@ -59,7 +59,7 @@ public class LibraryTests {
         capturer.start();
         library.borrowItem("The man who wasn't there");
         String expectedError = capturer.stop();
-        assertEquals(expectedError, "book does not exist in our library\n");
+        assertEquals(expectedError, "That book is not available.\n");
     }
 
     @Test
@@ -74,14 +74,10 @@ public class LibraryTests {
         assertTrue(bookExistsInLibrary);
     }
 
-//    @Test
-//    public void returnBookSuccessfully() throws Exception {
-//        library.borrowItem("The Witches");
-//        System.out.println(library.getTitleAuthorList());
-//        library.returnBook("The Witches");
-//        
-//    }
-
-
-
+    @Test
+    public void libraryShouldHaveOnlyTwoBooksAfterBorrowingOneFromTheLibrary() throws Exception {
+        assertEquals(library.bookCount(), 3);
+        library.borrowItem("Leviathan Wakes");
+        assertEquals(library.bookCount(), 2);
+    }
 }

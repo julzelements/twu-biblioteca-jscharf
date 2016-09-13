@@ -31,20 +31,19 @@ public class BookTests {
     }
 
     @Test
-    public void testCompareSimilarBooks() throws Exception {
-        assertTrue(theGodOfSmallThings.compareTitle(theGodOfSmallThings2.title));
-        assertTrue(theWitches.compareTitle(theWitches2.title));
+    public void testShouldReturnTrueWhenEqualsIsUsedOnSimilarBooks() throws Exception {
+        assertTrue(theGodOfSmallThings.equals(theGodOfSmallThings2));
+
     }
 
     @Test
-    public void testOverrideEquals() throws Exception {
-        assertTrue(theGodOfSmallThings.equals(theGodOfSmallThings2));
+    public void testShouldReturnFalseWhenEqualsIsUsedOnDifferentBooks() throws Exception {
         assertFalse(theGodOfSmallThings.equals(theWitches));
     }
 
     @Test
-    public void testCompareDifferentBooks() throws Exception {
-        assertFalse(theGodOfSmallThings.compareTitle(theWitches.title));
+    public void testWhenBookIsInitializedBookCheckedOutShouldBeFalse() throws Exception {
+        assertFalse(theWitches.checkedOut);
     }
 
     @Test
