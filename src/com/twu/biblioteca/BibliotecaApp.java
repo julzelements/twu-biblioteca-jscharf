@@ -22,7 +22,7 @@ public class BibliotecaApp {
     public void welcomeOptions(UserInput userInput) {
 
             String choice = userInput.getString(
-                    "What would you like to do?\n" +
+                            "What would you like to do?\n" +
                             "Borrow a book? type: 'b'\n" +
                             "Return a book? type: 'r'\n" +
                             "See book details? type: 'd'\n" +
