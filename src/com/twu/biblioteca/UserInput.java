@@ -3,8 +3,6 @@ import java.io.*;
 
 public class UserInput {
 
-
-
     public String getString(String prompt) {
         String inputLine = null;
         System.out.print(prompt + " ");

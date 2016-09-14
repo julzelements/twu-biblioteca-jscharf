@@ -26,21 +26,14 @@ public class LibraryTests {
     }
 
     @Test
-    public void testAddBooksToLibrary() throws Exception {
-        String titles = library.getTitleAuthorList();
-        String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
-                                "The Witches, Roald Dahl\n" +
-                                "Leviathan Wakes, James S. A. Corey\n";
-        assertEquals(titles, expectedTitles);
+    public void testAddBookToLibrary() throws Exception {
+       assertTrue(library.getTitleAuthorList().contains("The Witches"));
     }
 
     @Test
     public void testRemoveBookFromLibrary() throws Exception {
         library.borrowItem("Leviathan Wakes");
-        String titles = library.getTitleAuthorList();
-        String expectedTitles = "The God of Small Things, Arundhati Roy\n" +
-                "The Witches, Roald Dahl\n";
-        assertEquals(titles, expectedTitles);
+        assertFalse(library.getTitleAuthorList().contains("Leviathan Wakes"));
 
     }
 
@@ -53,14 +46,12 @@ public class LibraryTests {
         assertEquals(titles, expectedTitles);
     }
 
-    @Test
-    public void testRemoveNonExistentBookFromLibrary() throws Exception {
-        ConsoleOutputCapturer capturer = new ConsoleOutputCapturer();
-        capturer.start();
-        library.borrowItem("The man who wasn't there");
-        String expectedError = capturer.stop();
-        assertEquals(expectedError, "That book is not available.\n");
-    }
+//    @Test
+//    public void testRemoveNonExistentBookFromLibrary() throws Exception {
+//        library.borrowItem("The man who wasn't there");
+//
+//        assertEquals(expectedError, "That book is not available.\n");
+//    }
 
     @Test
     public void checkThatTitleNotValid() throws Exception {

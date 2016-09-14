@@ -5,12 +5,13 @@ public class BibliotecaApp {
     UserInput userInput;
     Library library;
 
+    public BibliotecaApp(UserInput userInput, Library library) {
+        this.userInput = userInput;
+        this.library = library;
+    }
 
     public void run() {
-        library = new Library();
-        initializeLibrary();
 
-        userInput = new UserInput();
         welcomeMessage();
         welcomeOptions(userInput);
     }
@@ -62,18 +63,5 @@ public class BibliotecaApp {
         System.out.println("Available Books:\n" + library.getTitleAuthorList());
         welcomeOptions(userInput);
     }
-
-    public void initializeLibrary() {
-        //TODO remove the harcoded books and initialize from a file?
-        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
-        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
-
-        library.add(theGodOfSmallThings);
-        library.add(theWitches);
-        library.add(leviathanWakes);
-
-    }
-
 
 }

@@ -1,9 +1,8 @@
 package com.twu.biblioteca;
 
-public class MockUserInput {
-
-    protected String getString(String prompt, String mockInput) {
-        System.out.println(prompt + "\n" + mockInput);
-        return mockInput;
+public class MockUserInput extends UserInput{
+    @Override
+    public String getString(String prompt) {
+        return "Julian";
     }
 }
