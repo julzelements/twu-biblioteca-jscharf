@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.SyncFailedException;
 
 import static org.junit.Assert.assertTrue;
 
@@ -14,19 +15,20 @@ public class AppFunctionalTests {
         Library library = new Constants().library;
         MockUserInput user = new MockUserInput();
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(byteArrayOutputStream);
+        ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(consoleOutput);
+
+        PrintStream old = System.out;
 
         System.setOut(printStream);
 
         BibliotecaApp app = new BibliotecaApp(user, library);
         app.run();
 
-        assertTrue(byteArrayOutputStream.toString().contains("Welcome"));
+        assertTrue(consoleOutput.toString().contains("Welcome to Biblioteca"));
 
-
-
-
-
+        printStream.flush();
+        System.setOut(old);
+        System.out.println(consoleOutput.toString());
     }
 }
