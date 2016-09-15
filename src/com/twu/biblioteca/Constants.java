@@ -1,10 +1,13 @@
 package com.twu.biblioteca;
 
-public class TestConstants {
+/**
+ * Created by jscharf on 14/09/2016.
+ */
+public class Constants {
 
     Library library;
 
-    public TestConstants() {
+    public Constants() {
         library = new Library();
         initializeLibrary();
     }

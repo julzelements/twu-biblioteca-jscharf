@@ -5,7 +5,7 @@ package com.twu.biblioteca;
  */
 public class Main {
     public static void main(String[] args) {
-        BibliotecaApp app = new BibliotecaApp(new UserInput(), new Library());
+        BibliotecaApp app = new BibliotecaApp(new UserInput(), new Constants().library);
         app.run();
     }
 }

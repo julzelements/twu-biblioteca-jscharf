@@ -56,7 +56,6 @@ public class BibliotecaApp {
 
     public void quit() {
         System.out.println("Thank you, come again!");
-        welcomeOptions(userInput);
     }
 
     public void displayLibrary() {
