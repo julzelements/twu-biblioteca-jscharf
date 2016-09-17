@@ -49,7 +49,7 @@ public class Library {
             Book currentBook = libraryList.get(i);
             if (currentBook.title.equals(bookTitle)) {
                 if (!currentBook.checkedOut) {
-                    System.out.println("The book: " + bookTitle + " is already in the library\n" +
+                    System.out.println("The book: " + bookTitle + " is already in the fullLibrary\n" +
                             "please notify librarian");
                 } else {
                     currentBook.checkedOut = false;

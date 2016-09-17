@@ -22,12 +22,7 @@ public class BibliotecaApp {
 
     public void welcomeOptions(UserInput userInput) {
 
-            String choice = userInput.getString(
-                            "What would you like to do?\n" +
-                            "Borrow a book? type: 'b'\n" +
-                            "Return a book? type: 'r'\n" +
-                            "See book details? type: 'd'\n" +
-                            "Quit? type q\n");
+            String choice = userInput.getString(Constants.getBookMainMenu());
             if (choice.equals("b")) borrowItem();
             if (choice.equals("r")) returnItem();
             if (choice.equals("d")) showLibraryDetails();
@@ -36,17 +31,19 @@ public class BibliotecaApp {
 
 
     public void borrowItem() {
-        String requestedBook = userInput.getString("type the title of the book you would like to borrow");
+        String requestedBook = userInput.getString("Type the title of the book you would like to borrow");
         library.borrowItem(requestedBook);
+        System.out.println("User is trying to borrow: " + requestedBook);
         welcomeOptions(userInput);
     }
 
     public void returnItem() {
+        String bookToReturn = userInput.getString("Type the title of book to return");
+        System.out.println(bookToReturn);
+        library.returnItem(bookToReturn);
 
-        System.out.println("User wants to return item");
-
-        library.returnItem(userInput.getString("Type the title of book to return"));
         welcomeOptions(userInput);
+
     }
 
     public void showLibraryDetails() {

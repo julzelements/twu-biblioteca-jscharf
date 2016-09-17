@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class MockUserInput extends UserInput {
 
@@ -10,10 +9,15 @@ public class MockUserInput extends UserInput {
 
     public MockUserInput() {
     userCommands = new LinkedList<String>();
-        userCommands.add("b");
-        userCommands.add("The Witches");
-        userCommands.add("r");
-        userCommands.add("The Witches");
+    }
+
+    public void addUserInput(String userInput) {
+        if (userCommands.contains("q")) {
+            userCommands.remove("q");
+            userCommands.add(userInput);
+        } else {
+            userCommands.add(userInput);
+        }
         userCommands.add("q");
     }
 

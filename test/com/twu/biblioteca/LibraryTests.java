@@ -48,7 +48,7 @@ public class LibraryTests {
 
 //    @Test
 //    public void testRemoveNonExistentBookFromLibrary() throws Exception {
-//        library.borrowItem("The man who wasn't there");
+//        fullLibrary.borrowItem("The man who wasn't there");
 //
 //        assertEquals(expectedError, "That book is not available.\n");
 //    }
