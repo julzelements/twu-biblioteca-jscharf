@@ -84,4 +84,22 @@ public class AppFunctionalTests {
         app.run();
         assertTrue(library.bookCount() == (initialBookCount - 1));
     }
+
+    @Test
+    public void shouldDisplayUserDetailsWhenuIsSelected() throws Exception {
+
+        ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(consoleOutput);
+        System.setOut(printStream);
+
+        UserInput spockStub = mock(UserInput.class);
+        Mockito.when(spockStub.getString(UI_MAIN_MENU))
+                .thenReturn("u")
+                .thenReturn("q");
+
+        Library library = new Constants().fullLibrary;
+        BibliotecaApp app = new BibliotecaApp(spockStub, library);
+        app.run();
+        assertTrue(consoleOutput.toString().contains(USER_INFO_FORMATTED));
+    }
 }
