@@ -1,11 +1,11 @@
 package com.twu.biblioteca;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static com.twu.biblioteca.SyntaxSugar.*;
 
 public class LibraryTests {
 
@@ -16,13 +16,8 @@ public class LibraryTests {
 
     @Before
     public void setUp() throws Exception {
-        library = new Library();
-        theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
-        theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
-        library.add(theGodOfSmallThings);
-        library.add(theWitches);
-        library.add(leviathanWakes);
+        library = new Constants().fullLibrary;
+
     }
 
     @Test
@@ -71,4 +66,17 @@ public class LibraryTests {
         library.borrowItem("Leviathan Wakes");
         assertEquals(library.bookCount(), 2);
     }
+
+    @Test
+    public void libraryShouldReturnTrueWhenValidUserIsChecked() throws Exception {
+        assertTrue(library.validLibraryNumberCheck(VALID_LIBRARY_NUMBER));
+
+    }
+
+    @Test
+    public void libraryShouldReturnFalseWhenInvalidUserIsChecked() throws Exception {
+        assertFalse(library.validLibraryNumberCheck(INVALID_LIBRARY_NUMBER));
+
+    }
+
 }

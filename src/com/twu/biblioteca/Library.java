@@ -1,24 +1,26 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.PriorityBlockingQueue;
+import static com.twu.biblioteca.SyntaxSugar.*;
+
 
 public class Library {
 
-    ArrayList<Book> libraryList;
+    ArrayList<Book> libraryCatalog;
+    ArrayList<User> users;
 
     public Library() {
-        this.libraryList = new ArrayList<Book>();
+        this.libraryCatalog = new ArrayList<Book>();
+        this.users = new ArrayList<User>();
     }
 
-    public void add(Book book) {
-        libraryList.add(book);
+    public void addBook(Book book) {
+        libraryCatalog.add(book);
     }
 
     public String getTitleAuthorList() {
         String titles = new String();
-        for (Book temp : libraryList) {
+        for (Book temp : libraryCatalog) {
             if (!temp.checkedOut) {
                 titles = titles + temp.title + ", " + temp.author + "\n";
             }
@@ -31,11 +33,11 @@ public class Library {
             System.out.println("That book is not available.");
         }
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            Book currentBook = libraryList.get(i);
+        for (int i = 0; i < libraryCatalog.size(); i++) {
+            Book currentBook = libraryCatalog.get(i);
             if (currentBook.title.equals(bookTitle)) {
                 currentBook.checkedOut = true;
-                System.out.println("Thank you! Enjoy the book");
+                System.out.println(BORROW_SUCCESS);
             }
         }
     }
@@ -45,15 +47,15 @@ public class Library {
             System.out.println("That is not a valid book to return.");
         }
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            Book currentBook = libraryList.get(i);
+        for (int i = 0; i < libraryCatalog.size(); i++) {
+            Book currentBook = libraryCatalog.get(i);
             if (currentBook.title.equals(bookTitle)) {
                 if (!currentBook.checkedOut) {
                     System.out.println("The book: " + bookTitle + " is already in the fullLibrary\n" +
                             "please notify librarian");
                 } else {
                     currentBook.checkedOut = false;
-                    System.out.println("Thank you for returning the book.");
+                    System.out.println(RETURN_SUCCESS);
                 }
 
             }
@@ -65,8 +67,8 @@ public class Library {
     public Boolean validTitleCheck(String title) {
         Boolean bookExistsInLibrary = false;
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            Book currentBook = libraryList.get(i);
+        for (int i = 0; i < libraryCatalog.size(); i++) {
+            Book currentBook = libraryCatalog.get(i);
             if (currentBook.title.equals(title)) {
                 bookExistsInLibrary = true;
             }
@@ -76,13 +78,28 @@ public class Library {
 
     public int bookCount() {
         int bookCount = 0;
-        for (int i = 0; i < libraryList.size(); i++) {
-            boolean checkedOut = libraryList.get(i).checkedOut;
+        for (int i = 0; i < libraryCatalog.size(); i++) {
+            boolean checkedOut = libraryCatalog.get(i).checkedOut;
             if (!checkedOut) {
                 bookCount++;
             }
         }
 
         return bookCount;
+    }
+
+    public boolean validLibraryNumberCheck(String userNumber) {
+        boolean validUser = false;
+        for (int i = 0; i < users.size(); i++) {
+            String tempUserNumber = users.get(i).userNumber;
+            if (userNumber.equals(tempUserNumber)) {
+                validUser = true;
+            }
+        }
+        return validUser;
+    }
+
+    public void addUser(User user) {
+            users.add(user);
     }
 }

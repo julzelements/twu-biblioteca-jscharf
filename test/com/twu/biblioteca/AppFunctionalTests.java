@@ -6,9 +6,9 @@ import org.mockito.Mockito;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.twu.biblioteca.SyntaxSugar.*;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-
 
 public class AppFunctionalTests {
 
@@ -18,15 +18,13 @@ public class AppFunctionalTests {
         PrintStream printStream = new PrintStream(consoleOutput);
         System.setOut(printStream);
 
-        String bookMenuQuery = Constants.getBookMainMenu();
         UserInput spockStub = mock(UserInput.class);
-        Mockito.when(spockStub.getString(bookMenuQuery))
+        Mockito.when(spockStub.getString(UI_MAIN_MENU))
                 .thenReturn("q");
 
         BibliotecaApp app = new BibliotecaApp(spockStub, new Library());
         app.run();
-
-        assertTrue(consoleOutput.toString().contains("Welcome to Biblioteca"));
+        assertTrue(consoleOutput.toString().contains(GREETING));
     }
 
     @Test
@@ -35,20 +33,17 @@ public class AppFunctionalTests {
         PrintStream printStream = new PrintStream(consoleOutput);
         System.setOut(printStream);
 
-        String bookMenuQuery = Constants.getBookMainMenu();
         UserInput spockStub = mock(UserInput.class);
-        Mockito.when(spockStub.getString(bookMenuQuery))
+        Mockito.when(spockStub.getString(UI_MAIN_MENU))
                 .thenReturn("b")
                 .thenReturn("q");
-        Mockito.when(spockStub.getString("Type the title of the book you would like to borrow"))
+        Mockito.when(spockStub.getString(TYPE_BOOK_TITLE_TO_BORROW))
                 .thenReturn("The Witches");
 
         Library library = new Constants().fullLibrary;
-
         BibliotecaApp app = new BibliotecaApp(spockStub, library);
         app.run();
-
-        assertTrue(consoleOutput.toString().contains("Thank you! Enjoy the book"));
+        assertTrue(consoleOutput.toString().contains(BORROW_SUCCESS));
     }
 
 
@@ -59,28 +54,24 @@ public class AppFunctionalTests {
         PrintStream printStream = new PrintStream(consoleOutput);
         System.setOut(printStream);
 
-        String bookMenuQuery = Constants.getBookMainMenu();
         UserInput spockStub = mock(UserInput.class);
-        Mockito.when(spockStub.getString(bookMenuQuery))
+        Mockito.when(spockStub.getString(UI_MAIN_MENU))
                 .thenReturn("r")
                 .thenReturn("q");
-        Mockito.when(spockStub.getString("Type the title of book to return"))
+        Mockito.when(spockStub.getString(TYPE_BOOK_TITLE_TO_RETURN))
                 .thenReturn("The Witches");
 
         Library library = new Constants().libraryWithTheWitchesBorrowed;
-
         BibliotecaApp app = new BibliotecaApp(spockStub, library);
         app.run();
-
-        assertTrue(consoleOutput.toString().contains("Thank you for returning the book"));
+        assertTrue(consoleOutput.toString().contains(RETURN_SUCCESS));
     }
 
     @Test
     public void mockitoLibraryCountShouldBeOneLessWhenABookIsBorrowed() throws Exception {
 
-        String bookMenuQuery = Constants.getBookMainMenu();
         UserInput spockStub = mock(UserInput.class);
-        Mockito.when(spockStub.getString(bookMenuQuery))
+        Mockito.when(spockStub.getString(UI_MAIN_MENU))
                 .thenReturn("b")
                 .thenReturn("q");
         Mockito.when(spockStub.getString("Type the title of the book you would like to borrow"))
@@ -89,11 +80,8 @@ public class AppFunctionalTests {
 
         Library library = new Constants().fullLibrary;
         int initialBookCount = library.bookCount();
-
         BibliotecaApp app = new BibliotecaApp(spockStub, library);
         app.run();
-
         assertTrue(library.bookCount() == (initialBookCount - 1));
     }
-
 }

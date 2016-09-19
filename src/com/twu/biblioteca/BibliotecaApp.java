@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import static com.twu.biblioteca.SyntaxSugar.*;
+
 public class BibliotecaApp {
 
     UserInput userInput;
@@ -11,18 +13,17 @@ public class BibliotecaApp {
     }
 
     public void run() {
-
         welcomeMessage();
         welcomeOptions(userInput);
     }
 
     public void welcomeMessage() {
-        System.out.println("Hello! \nWelcome to Biblioteca.\n");
+        System.out.println(GREETING);
     }
 
     public void welcomeOptions(UserInput userInput) {
 
-            String choice = userInput.getString(Constants.getBookMainMenu());
+            String choice = userInput.getString(UI_MAIN_MENU);
             if (choice.equals("b")) borrowItem();
             if (choice.equals("r")) returnItem();
             if (choice.equals("d")) showLibraryDetails();
@@ -31,14 +32,14 @@ public class BibliotecaApp {
 
 
     public void borrowItem() {
-        String requestedBook = userInput.getString("Type the title of the book you would like to borrow");
+        String requestedBook = userInput.getString(TYPE_BOOK_TITLE_TO_BORROW);
         library.borrowItem(requestedBook);
         System.out.println("User is trying to borrow: " + requestedBook);
         welcomeOptions(userInput);
     }
 
     public void returnItem() {
-        String bookToReturn = userInput.getString("Type the title of book to return");
+        String bookToReturn = userInput.getString(TYPE_BOOK_TITLE_TO_RETURN);
         System.out.println(bookToReturn);
         library.returnItem(bookToReturn);
 
@@ -52,7 +53,7 @@ public class BibliotecaApp {
     }
 
     public void quit() {
-        System.out.println("Thank you, come again!");
+        System.out.println(QUIT_MESSAGE);
     }
 
     public void displayLibrary() {
