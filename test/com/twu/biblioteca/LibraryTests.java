@@ -10,14 +10,10 @@ import static com.twu.biblioteca.SyntaxSugar.*;
 public class LibraryTests {
 
     Library library;
-    Book theWitches;
-    Book theGodOfSmallThings;
-    Book leviathanWakes;
 
     @Before
     public void setUp() throws Exception {
         library = new Constants().fullLibrary;
-
     }
 
     @Test
@@ -70,13 +66,15 @@ public class LibraryTests {
     @Test
     public void libraryShouldReturnTrueWhenValidUserIsChecked() throws Exception {
         assertTrue(library.validLibraryNumberCheck(VALID_LIBRARY_NUMBER));
-
     }
 
     @Test
     public void libraryShouldReturnFalseWhenInvalidUserIsChecked() throws Exception {
         assertFalse(library.validLibraryNumberCheck(INVALID_LIBRARY_NUMBER));
-
     }
 
+    @Test
+    public void libraryShouldReturnCurrentUserInfoWhenGetCurrentUserInfoIsCalled() throws Exception {
+        assertEquals(library.showCurrentUserInfo(), USER_INFO_FORMATTED);
+    }
 }

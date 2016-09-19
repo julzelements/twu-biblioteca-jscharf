@@ -91,7 +91,7 @@ public class Library {
     public boolean validLibraryNumberCheck(String userNumber) {
         boolean validUser = false;
         for (int i = 0; i < users.size(); i++) {
-            String tempUserNumber = users.get(i).userNumber;
+            String tempUserNumber = users.get(i).number;
             if (userNumber.equals(tempUserNumber)) {
                 validUser = true;
             }
@@ -101,5 +101,14 @@ public class Library {
 
     public void addUser(User user) {
             users.add(user);
+    }
+
+    public String showCurrentUserInfo() {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).isCurrentUser){
+                return users.get(i).getFormattedDetails();
+            }
+        }
+        return "Error finding user";
     }
 }

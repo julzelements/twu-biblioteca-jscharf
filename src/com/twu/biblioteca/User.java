@@ -1,22 +1,47 @@
 package com.twu.biblioteca;
 
-/**
- * Created by jscharf on 19/09/2016.
- */
 public class User {
-    String userNumber;
-    String userPassword;
+    String number;
+    String password;
+    String name;
+    boolean isCurrentUser;
+    String address;
+    String phoneNumber;
+    String email;
 
-    public String getUserNumber() {
-        return userNumber;
+    public String getNumber() {
+        return number;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public User(String userNumber, String userPassword) {
-        this.userNumber = userNumber;
-        this.userPassword = userPassword;
+    public boolean isCurrentUser() {
+        return isCurrentUser;
+    }
+
+    public void setCurrentUser(boolean currentUser) {
+        isCurrentUser = currentUser;
+    }
+
+    public String getFormattedDetails() {
+        return  "Library number: " + number + "\n" +
+                "Name: " + name + "\n" +
+                "Address: " + address + "\n" +
+                "Phone number: " + phoneNumber + "\n" +
+                "Email: " + email;
+    }
+
+    public User(String number, String password, String name, String address, String phoneNumber, String email, boolean isCurrentUser) {
+        this.number = number;
+        this.password = password;
+        this.name = name;
+        this.isCurrentUser = false;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.isCurrentUser = isCurrentUser;
+
     }
 }

@@ -29,9 +29,8 @@ public class Constants {
     }
 
     public void addUsers(Library libraryToInitialize) {
-        libraryToInitialize.addUser(new User(VALID_LIBRARY_NUMBER, VALID_PASSWORD));
-        libraryToInitialize.addUser(new User(ANOTHER_VALID_LIBRARY_NUMBER, ANOTHER_VALID_PASSWORD));
-
+        libraryToInitialize.addUser(new User(VALID_LIBRARY_NUMBER, VALID_PASSWORD, NAME, ADDRESS, PHONE_NUMBER, EMAIL, true));
+        libraryToInitialize.addUser(new User(ANOTHER_VALID_LIBRARY_NUMBER, ANOTHER_VALID_PASSWORD, NAME, ADDRESS, PHONE_NUMBER, EMAIL, false));
     }
 
 }

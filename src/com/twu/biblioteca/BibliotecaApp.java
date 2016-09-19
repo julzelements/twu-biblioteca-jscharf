@@ -28,6 +28,12 @@ public class BibliotecaApp {
             if (choice.equals("r")) returnItem();
             if (choice.equals("d")) showLibraryDetails();
             if (choice.equals("q")) quit();
+            if (choice.equals("u")) showUserInfo();
+    }
+
+    private void showUserInfo() {
+        System.out.println(library.showCurrentUserInfo());
+        welcomeOptions(userInput);
     }
 
 
