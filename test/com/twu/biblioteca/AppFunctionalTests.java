@@ -28,6 +28,29 @@ public class AppFunctionalTests {
     }
 
     @Test
+    public void shouldAskForLoginDetailsWhenAppIsStarted() throws Exception {
+        ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(consoleOutput);
+        System.setOut(printStream);
+
+        UserInput spockStub = mock(UserInput.class);
+        Mockito.when(spockStub.getString(UI_MAIN_MENU))
+                .thenReturn("q");
+
+        Mockito.when(spockStub.getString(ENTER_LIBRARY_NUMBER))
+                .thenReturn(VALID_LIBRARY_NUMBER);
+
+        Mockito.when(spockStub.getString(ENTER_PASSWORD))
+                .thenReturn(VALID_PASSWORD);
+
+        BibliotecaApp app = new BibliotecaApp(spockStub, new Library());
+        app.run();
+        assertTrue(consoleOutput.toString().contains(GREETING));
+        assertTrue(consoleOutput.toString().contains(ENTER_LIBRARY_NUMBER));
+        assertTrue(consoleOutput.toString().contains(ENTER_PASSWORD));
+    }
+
+    @Test
     public void shouldOutputEnjoytheBookWhenABookIsBorrowed() throws Exception {
         ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(consoleOutput);
@@ -76,6 +99,7 @@ public class AppFunctionalTests {
                 .thenReturn("q");
         Mockito.when(spockStub.getString("Type the title of the book you would like to borrow"))
                 .thenReturn("The Witches");
+
 
 
         Library library = new Constants().fullLibrary;

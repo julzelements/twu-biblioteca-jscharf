@@ -6,6 +6,7 @@ public class BibliotecaApp {
 
     UserInput userInput;
     Library library;
+    LoginPage loginPage;
 
     public BibliotecaApp(UserInput userInput, Library library) {
         this.userInput = userInput;
@@ -19,6 +20,10 @@ public class BibliotecaApp {
 
     public void welcomeMessage() {
         System.out.println(GREETING);
+    }
+
+    public void login(UserInput userInput) {
+        loginPage = new LoginPage(userInput, library);
     }
 
     public void welcomeOptions(UserInput userInput) {
