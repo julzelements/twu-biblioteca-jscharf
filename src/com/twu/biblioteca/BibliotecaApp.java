@@ -1,22 +1,33 @@
 package com.twu.biblioteca;
 
+import java.io.PrintStream;
+
 public class BibliotecaApp {
 
     UserInput userInput;
     Library library;
+    PrintStream outputStream;
+
+    public BibliotecaApp(PrintStream outputStream) {
+        //refactor out the library to be injected
+        //refactor out UserInput to be injected
+        library = new Library();
+        initializeLibrary();
+        this.outputStream = outputStream;
+        userInput = new UserInput();
+    }
 
 
     public void run() {
-        library = new Library();
-        initializeLibrary();
 
-        userInput = new UserInput();
+
+
         welcomeMessage();
         welcomeOptions(userInput);
     }
 
     public void welcomeMessage() {
-        System.out.println("Hello! \nWelcome to Biblioteca.\n");
+        outputStream.println("Hello! \nWelcome to Biblioteca.\n");
     }
 
     public void welcomeOptions(UserInput userInput) {
@@ -42,7 +53,7 @@ public class BibliotecaApp {
 
     public void returnItem() {
 
-        System.out.println("User wants to return item");
+        outputStream.println("User wants to return item");
 
         library.returnItem(userInput.getString("Type the title of book to return"));
         welcomeOptions(userInput);
@@ -54,17 +65,15 @@ public class BibliotecaApp {
     }
 
     public void quit() {
-        System.out.println("Thank you, come again!");
+        outputStream.println("Thank you, come again!");
         welcomeOptions(userInput);
     }
 
     public void displayLibrary() {
-        System.out.println("Available Books:\n" + library.getTitleAuthorList());
-        welcomeOptions(userInput);
+        outputStream.println("Available Books:\n" + library.getTitleAuthorList());
     }
 
     public void initializeLibrary() {
-        //TODO remove the harcoded books and initialize from a file?
         Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
         Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
         Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
