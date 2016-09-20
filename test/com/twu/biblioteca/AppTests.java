@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class AppTests {
     BibliotecaApp app;
@@ -16,9 +18,13 @@ public class AppTests {
 
     @Before
     public void setUp() throws Exception {
+        Library mockLibrary = mock(Library.class);
+        when(mockLibrary.getTitleAuthorList()).thenReturn("Simple Library");
+
+
         byteArrayOutputStream = new ByteArrayOutputStream();
         outputStream = new PrintStream(byteArrayOutputStream);
-        app = new BibliotecaApp(outputStream);
+        app = new BibliotecaApp(outputStream, mockLibrary);
     }
 
     @Test
@@ -32,11 +38,7 @@ public class AppTests {
     public void testDisplayLibrary() {
         app.displayLibrary();
         String library = byteArrayOutputStream.toString();
-        String testLibrary =
-                "Available Books:\n" +
-                        "The God of Small Things, Arundhati Roy\n" +
-                        "The Witches, Roald Dahl\n" +
-                        "Leviathan Wakes, James S. A. Corey\n\n";
+        String testLibrary = "Simple Library\n";
         assertEquals(testLibrary, library);
     }
 

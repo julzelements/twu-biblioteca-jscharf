@@ -11,6 +11,7 @@ public class Library {
     public Library(PrintStream outputStream) {
         this.libraryList = new ArrayList<Book>();
         this.outputStream = outputStream;
+        initializeLibrary();
     }
 
     public void add(Book book) {
@@ -85,5 +86,16 @@ public class Library {
         }
 
         return bookCount;
+    }
+
+    public void initializeLibrary() {
+        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
+
+        add(theGodOfSmallThings);
+        add(theWitches);
+        add(leviathanWakes);
+
     }
 }

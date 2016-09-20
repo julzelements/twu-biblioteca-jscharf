@@ -26,12 +26,6 @@ public class LibraryTests {
         outputStream = new PrintStream(byteArrayOutputStream);
 
         library = new Library(outputStream);
-        theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
-        theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
-        library.add(theGodOfSmallThings);
-        library.add(theWitches);
-        library.add(leviathanWakes);
     }
 
     @Test

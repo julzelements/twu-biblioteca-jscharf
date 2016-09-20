@@ -8,11 +8,9 @@ public class BibliotecaApp {
     Library library;
     PrintStream outputStream;
 
-    public BibliotecaApp(PrintStream outputStream) {
+    public BibliotecaApp(PrintStream outputStream, Library library) {
         //refactor out the library to be injected
-        //refactor out UserInput to be injected
-        library = new Library(outputStream);
-        initializeLibrary();
+        this.library = library;
         this.outputStream = outputStream;
         userInput = new UserInput();
     }
@@ -70,19 +68,10 @@ public class BibliotecaApp {
     }
 
     public void displayLibrary() {
-        outputStream.println("Available Books:\n" + library.getTitleAuthorList());
+        outputStream.println(library.getTitleAuthorList());
     }
 
-    public void initializeLibrary() {
-        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
-        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
 
-        library.add(theGodOfSmallThings);
-        library.add(theWitches);
-        library.add(leviathanWakes);
-
-    }
 
 
 }
