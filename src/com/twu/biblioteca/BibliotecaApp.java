@@ -11,7 +11,7 @@ public class BibliotecaApp {
     public BibliotecaApp(PrintStream outputStream) {
         //refactor out the library to be injected
         //refactor out UserInput to be injected
-        library = new Library();
+        library = new Library(outputStream);
         initializeLibrary();
         this.outputStream = outputStream;
         userInput = new UserInput();

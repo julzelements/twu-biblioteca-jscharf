@@ -11,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 
 public class AppTests {
     BibliotecaApp app;
-    ConsoleOutputCapturer capturer;
     PrintStream outputStream;
     ByteArrayOutputStream byteArrayOutputStream;
 
@@ -44,7 +43,6 @@ public class AppTests {
     @After
     public void tearDown() throws Exception {
         app = null;
-        capturer = null;
 
     }
 }

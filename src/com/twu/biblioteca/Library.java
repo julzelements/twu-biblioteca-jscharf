@@ -1,15 +1,16 @@
 package com.twu.biblioteca;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.PriorityBlockingQueue;
 
 public class Library {
 
     ArrayList<Book> libraryList;
+    PrintStream outputStream;
 
-    public Library() {
+    public Library(PrintStream outputStream) {
         this.libraryList = new ArrayList<Book>();
+        this.outputStream = outputStream;
     }
 
     public void add(Book book) {
@@ -28,32 +29,32 @@ public class Library {
 
     public void borrowItem(String bookTitle){
         if (!validTitleCheck(bookTitle)) {
-            System.out.println("That book is not available.");
+            outputStream.println("That book is not available.");
         }
 
         for (int i = 0; i < libraryList.size(); i++) {
             Book currentBook = libraryList.get(i);
             if (currentBook.title.equals(bookTitle)) {
                 currentBook.checkedOut = true;
-                System.out.println("Thank you! Enjoy the book");
+                outputStream.println("Thank you! Enjoy the book");
             }
         }
     }
 
     public void returnItem(String bookTitle){
         if (!validTitleCheck(bookTitle)) {
-            System.out.println("That is not a valid book to return.");
+            outputStream.println("That is not a valid book to return.");
         }
 
         for (int i = 0; i < libraryList.size(); i++) {
             Book currentBook = libraryList.get(i);
             if (currentBook.title.equals(bookTitle)) {
                 if (!currentBook.checkedOut) {
-                    System.out.println("The book: " + bookTitle + " is already in the library\n" +
+                    outputStream.println("The book: " + bookTitle + " is already in the library\n" +
                             "please notify librarian");
                 } else {
                     currentBook.checkedOut = false;
-                    System.out.println("Thank you for returning the book.");
+                    outputStream.println("Thank you for returning the book.");
                 }
 
             }

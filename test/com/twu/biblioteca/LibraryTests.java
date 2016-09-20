@@ -3,6 +3,10 @@ package com.twu.biblioteca;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -13,10 +17,15 @@ public class LibraryTests {
     Book theWitches;
     Book theGodOfSmallThings;
     Book leviathanWakes;
+    PrintStream outputStream;
+    ByteArrayOutputStream byteArrayOutputStream;
 
     @Before
     public void setUp() throws Exception {
-        library = new Library();
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        outputStream = new PrintStream(byteArrayOutputStream);
+
+        library = new Library(outputStream);
         theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
         theWitches = new Book("The Witches", "Roald Dahl", "1983");
         leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
@@ -55,10 +64,8 @@ public class LibraryTests {
 
     @Test
     public void testRemoveNonExistentBookFromLibrary() throws Exception {
-        ConsoleOutputCapturer capturer = new ConsoleOutputCapturer();
-        capturer.start();
         library.borrowItem("The man who wasn't there");
-        String expectedError = capturer.stop();
+        String expectedError = byteArrayOutputStream.toString();
         assertEquals(expectedError, "That book is not available.\n");
     }
 
