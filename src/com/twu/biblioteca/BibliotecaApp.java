@@ -14,18 +14,18 @@ public class BibliotecaApp {
         this.userInput = userInput;
     }
 
-
     public void run() {
         welcomeMessage();
-        welcomeOptions(userInput);
+        welcomeOptions();
     }
 
     public void welcomeMessage() {
         outputStream.println("Hello! \nWelcome to Biblioteca.\n");
     }
 
-    public void welcomeOptions(UserInput userInput) {
+    public void welcomeOptions() {
 
+        while(true) {
             String choice = userInput.getString(
                     "What would you like to do?\n" +
                             "Borrow a book? type: 'b'\n" +
@@ -34,39 +34,26 @@ public class BibliotecaApp {
                             "Quit? type q\n");
             if (choice.equals("b")) borrowItem();
             if (choice.equals("r")) returnItem();
-            if (choice.equals("d")) showLibraryDetails();
-            if (choice.equals("q")) quit();
+            if (choice.equals("d")) displayLibrary();
+            if (choice.equals("q")) {
+                outputStream.println("Thank you, come again!");
+                break;
+            }
+        }
     }
-
 
     public void borrowItem() {
         String requestedBook = userInput.getString("type the title of the book you would like to borrow");
         library.borrowItem(requestedBook);
-        welcomeOptions(userInput);
     }
 
     public void returnItem() {
-
         outputStream.println("User wants to return item");
-
         library.returnItem(userInput.getString("Type the title of book to return"));
-        welcomeOptions(userInput);
     }
 
-    public void showLibraryDetails() {
-        displayLibrary();
-        welcomeOptions(userInput);
-    }
-
-    public void quit() {
-        outputStream.println("Thank you, come again!");
-    }
 
     public void displayLibrary() {
         outputStream.println(library.getTitleAuthorList());
     }
-
-
-
-
 }
