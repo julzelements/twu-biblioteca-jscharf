@@ -21,10 +21,11 @@ public class AppTests {
         Library mockLibrary = mock(Library.class);
         when(mockLibrary.getTitleAuthorList()).thenReturn("Simple Library");
 
+        UserInput mockUserInput = mock(UserInput.class);
 
         byteArrayOutputStream = new ByteArrayOutputStream();
         outputStream = new PrintStream(byteArrayOutputStream);
-        app = new BibliotecaApp(outputStream, mockLibrary);
+        app = new BibliotecaApp(outputStream, mockLibrary, mockUserInput);
     }
 
     @Test

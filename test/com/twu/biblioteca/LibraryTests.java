@@ -14,9 +14,6 @@ import static org.junit.Assert.assertTrue;
 public class LibraryTests {
 
     Library library;
-    Book theWitches;
-    Book theGodOfSmallThings;
-    Book leviathanWakes;
     PrintStream outputStream;
     ByteArrayOutputStream byteArrayOutputStream;
 

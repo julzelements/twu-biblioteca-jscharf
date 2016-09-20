@@ -8,18 +8,14 @@ public class BibliotecaApp {
     Library library;
     PrintStream outputStream;
 
-    public BibliotecaApp(PrintStream outputStream, Library library) {
-        //refactor out the library to be injected
+    public BibliotecaApp(PrintStream outputStream, Library library, UserInput userInput) {
         this.library = library;
         this.outputStream = outputStream;
-        userInput = new UserInput();
+        this.userInput = userInput;
     }
 
 
     public void run() {
-
-
-
         welcomeMessage();
         welcomeOptions(userInput);
     }
@@ -64,7 +60,6 @@ public class BibliotecaApp {
 
     public void quit() {
         outputStream.println("Thank you, come again!");
-        welcomeOptions(userInput);
     }
 
     public void displayLibrary() {

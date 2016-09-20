@@ -3,13 +3,14 @@ import java.io.*;
 
 public class UserInput {
 
-
-
     public String getString(String prompt) {
         String inputLine = null;
         System.out.print(prompt + " ");
         try {
-            BufferedReader is = new BufferedReader (new InputStreamReader(System.in));
+            InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+
+            BufferedReader is = new BufferedReader (inputStreamReader);
+
             inputLine = is.readLine();
             if (inputLine.length() == 0 ) return null;
         } catch(IOException e) {
