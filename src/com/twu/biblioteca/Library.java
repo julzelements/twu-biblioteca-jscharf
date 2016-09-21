@@ -1,7 +1,9 @@
 package com.twu.biblioteca;
 
 import java.io.PrintStream;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Library {
@@ -21,8 +23,7 @@ public class Library {
 
     public String getTitleAuthorList() {
         String titles = new String();
-        for (Map.Entry<String, Book> temp : books.entrySet()) {
-            Book book = temp.getValue();
+        for (Book book : getBooks()) {
             if (!book.checkedOut) {
                 titles = titles + book.title + ", " + book.author + "\n";
             }
@@ -30,8 +31,8 @@ public class Library {
         return titles;
     }
 
-    public void borrowBook(String title){
-        if (!bookExists(title)){
+    public void borrowBook(String title) {
+        if (!bookExists(title)) {
             outputStream.println("That book is not available.");
         } else {
             getBook(title).checkOut();
@@ -60,18 +61,23 @@ public class Library {
         return books.get(title);
     }
 
+    public Collection<Book> getBooks() {
+        return books.values();
+    }
+
+
     public int bookCount() {
         int bookCount = 0;
-        for (Map.Entry<String, Book> book : books.entrySet()) {
-            if (!book.getValue().checkedOut) {
-                bookCount ++;
+        for (Book book : getBooks()) {
+            if (!book.checkedOut) {
+                bookCount++;
             }
         }
         return bookCount;
     }
 
     public void initializeLibrary() {
-        Book theGodOfSmallThings = new Book("The God of Small Things","Arundhati Roy","1997");
+        Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
         Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
         Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
 
