@@ -3,17 +3,14 @@ package com.twu.biblioteca;
 import java.io.PrintStream;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.Iterator;
 
 public class Library {
 
     HashMap<String, Book> books;
-    PrintStream outputStream;
 
-    public Library(PrintStream outputStream) {
+    public Library() {
         this.books = new HashMap<String, Book>();
-        this.outputStream = outputStream;
         initializeLibrary();
     }
 
@@ -21,35 +18,37 @@ public class Library {
         books.put(book.title, book);
     }
 
-    public String getTitleAuthorList() {
-        String titles = new String();
-        for (Book book : getBooks()) {
-            if (!book.checkedOut) {
-                titles = titles + book.title + ", " + book.author + "\n";
+    public Collection<Book> getAvailableBooks() {
+        Collection<Book> availableBooks = getBooks();
+        for (Iterator<Book> iterator = availableBooks.iterator(); iterator.hasNext();) {
+            Book book = iterator.next();
+            if (book.checkedOut) {
+                iterator.remove();
             }
         }
-        return titles;
+        return availableBooks;
     }
 
-    public void borrowBook(String title) {
+    public boolean borrowBook(String title) throws InvalidBookToReturnException, BookIsCurrentlyCheckedOutException {
         if (!bookExists(title)) {
-            outputStream.println("That book is not available.");
+            throw new InvalidBookToReturnException();
+        } else if (books.get(title).checkedOut) {
+            throw new BookIsCurrentlyCheckedOutException();
         } else {
             getBook(title).checkOut();
-            outputStream.println("Thank you! Enjoy the book");
+            return true;
         }
     }
 
 
-    public void returnBook(String bookTitle) {
+    public boolean returnBook(String bookTitle) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
         if (!bookExists(bookTitle)) {
-            outputStream.println("That is not a valid book to return.");
+            throw new InvalidBookToReturnException();
         } else if (!getBook(bookTitle).checkedOut) {
-            outputStream.println("The book: " + bookTitle + " is already in the library\n" +
-                    "please notify librarian");
+            throw new BookIsAlreadyCheckedInException();
         } else {
             getBook(bookTitle).checkIn();
-            outputStream.println("Thank you for returning the book.");
+            return true;
         }
     }
 

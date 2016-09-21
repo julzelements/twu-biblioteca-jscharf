@@ -43,17 +43,36 @@ public class BibliotecaApp {
     }
 
     public void borrowItem() {
-        String requestedBook = userInput.getString("type the title of the book you would like to borrowBook");
-        library.borrowBook(requestedBook);
+        boolean success = false;
+        try {
+            library.borrowBook(userInput.getString("type the title of the book you would like to borrow"));
+        } catch(InvalidBookToReturnException InvalidBookToReturnEx) {
+            outputStream.println("Sorry, that book does not exist in the library");
+        }catch (BookIsCurrentlyCheckedOutException bookIsCurrentlyCheckecOurEx) {
+            outputStream.print("Sorry, that book is currently checked out");
+        } if (success) {
+            outputStream.println("Thank you, enjoy the book!");
+        }
     }
 
     public void returnItem() {
-        outputStream.println("User wants to return item");
-        library.returnBook(userInput.getString("Type the title of book to return"));
+        boolean success = false;
+        try {
+          success = library.returnBook(userInput.getString("Type the title of book to return"));
+        } catch (BookIsAlreadyCheckedInException bookAlreadyCheckedInEx) {
+            outputStream.println("That book already exists in the library, please notify Librarian.");
+        } catch (InvalidBookToReturnException invalidBookToReturnEx) {
+            outputStream.println("That is not a valid book to return");
+        } if (success) {
+            outputStream.println("Thank you for returning the book!");
+        }
     }
 
 
     public void displayLibrary() {
-        outputStream.println(library.getTitleAuthorList());
+
+        for (Book book: library.getAvailableBooks()) {
+            outputStream.println(book.author + ", " + book.title + ", " + book.year);
+        }
     }
 }
