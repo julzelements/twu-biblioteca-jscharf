@@ -43,13 +43,13 @@ public class BibliotecaApp {
     }
 
     public void borrowItem() {
-        String requestedBook = userInput.getString("type the title of the book you would like to borrow");
-        library.borrowItem(requestedBook);
+        String requestedBook = userInput.getString("type the title of the book you would like to borrowBook");
+        library.borrowBook(requestedBook);
     }
 
     public void returnItem() {
         outputStream.println("User wants to return item");
-        library.returnItem(userInput.getString("Type the title of book to return"));
+        library.returnBook(userInput.getString("Type the title of book to return"));
     }
 
 

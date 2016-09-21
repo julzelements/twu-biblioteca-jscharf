@@ -16,6 +16,16 @@ public class Book {
         this.checkedOut = false;
     }
 
+    public void checkOut() {
+        checkedOut = true;
+    }
+
+    public void checkIn() {
+        checkedOut = false;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

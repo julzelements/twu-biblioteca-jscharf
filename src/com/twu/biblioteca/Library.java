@@ -1,90 +1,72 @@
 package com.twu.biblioteca;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Library {
 
-    ArrayList<Book> libraryList;
+    HashMap<String, Book> books;
     PrintStream outputStream;
 
     public Library(PrintStream outputStream) {
-        this.libraryList = new ArrayList<Book>();
+        this.books = new HashMap<String, Book>();
         this.outputStream = outputStream;
         initializeLibrary();
     }
 
     public void add(Book book) {
-        libraryList.add(book);
+        books.put(book.title, book);
     }
 
     public String getTitleAuthorList() {
         String titles = new String();
-        for (Book temp : libraryList) {
-            if (!temp.checkedOut) {
-                titles = titles + temp.title + ", " + temp.author + "\n";
+        for (Map.Entry<String, Book> temp : books.entrySet()) {
+            Book book = temp.getValue();
+            if (!book.checkedOut) {
+                titles = titles + book.title + ", " + book.author + "\n";
             }
         }
         return titles;
     }
 
-    public void borrowItem(String bookTitle){
-        if (!validTitleCheck(bookTitle)) {
+    public void borrowBook(String title){
+        if (!bookExists(title)){
             outputStream.println("That book is not available.");
-        }
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            Book currentBook = libraryList.get(i);
-            if (currentBook.title.equals(bookTitle)) {
-                currentBook.checkedOut = true;
-                outputStream.println("Thank you! Enjoy the book");
-            }
+        } else {
+            getBook(title).checkOut();
+            outputStream.println("Thank you! Enjoy the book");
         }
     }
 
-    public void returnItem(String bookTitle){
-        if (!validTitleCheck(bookTitle)) {
+
+    public void returnBook(String bookTitle) {
+        if (!bookExists(bookTitle)) {
             outputStream.println("That is not a valid book to return.");
-        }
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            Book currentBook = libraryList.get(i);
-            if (currentBook.title.equals(bookTitle)) {
-                if (!currentBook.checkedOut) {
-                    outputStream.println("The book: " + bookTitle + " is already in the library\n" +
-                            "please notify librarian");
-                } else {
-                    currentBook.checkedOut = false;
-                    outputStream.println("Thank you for returning the book.");
-                }
-
-            }
+        } else if (!getBook(bookTitle).checkedOut) {
+            outputStream.println("The book: " + bookTitle + " is already in the library\n" +
+                    "please notify librarian");
+        } else {
+            getBook(bookTitle).checkIn();
+            outputStream.println("Thank you for returning the book.");
         }
     }
 
+    public Boolean bookExists(String title) {
+        return (books.containsKey(title));
+    }
 
-
-    public Boolean validTitleCheck(String title) {
-        Boolean bookExistsInLibrary = false;
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            Book currentBook = libraryList.get(i);
-            if (currentBook.title.equals(title)) {
-                bookExistsInLibrary = true;
-            }
-        }
-        return bookExistsInLibrary;
+    public Book getBook(String title) {
+        return books.get(title);
     }
 
     public int bookCount() {
         int bookCount = 0;
-        for (int i = 0; i < libraryList.size(); i++) {
-            boolean checkedOut = libraryList.get(i).checkedOut;
-            if (!checkedOut) {
-                bookCount++;
+        for (Map.Entry<String, Book> book : books.entrySet()) {
+            if (!book.getValue().checkedOut) {
+                bookCount ++;
             }
         }
-
         return bookCount;
     }
 
