@@ -20,14 +20,16 @@ public class AppTests {
 
     @Before
     public void setUp() throws Exception {
-        Library mockLibrary = mock(Library.class);
-        when(mockLibrary.getAvailableBooks()).thenReturn(new HashSet<Book>());
+        Library library = new Library();
+        library.add(new Book("The Book", "Mr Author", "2000"));
+
+
 
         UserInput mockUserInput = mock(UserInput.class);
 
         byteArrayOutputStream = new ByteArrayOutputStream();
         outputStream = new PrintStream(byteArrayOutputStream);
-        app = new BibliotecaApp(outputStream, mockLibrary, mockUserInput);
+        app = new BibliotecaApp(outputStream, library, mockUserInput);
     }
 
     @Test
@@ -38,10 +40,10 @@ public class AppTests {
     }
 
     @Test
-    public void testDisplayLibrary() {
+    public void testBibiliotecaAppShouldDisplayLibrary() {
         app.displayLibrary();
         String library = byteArrayOutputStream.toString();
-        String testLibrary = "Simple Library\n";
+        String testLibrary = "Mr Author, The Book, 2000\n";
         assertEquals(testLibrary, library);
     }
 

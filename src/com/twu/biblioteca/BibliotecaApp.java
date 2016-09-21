@@ -46,7 +46,7 @@ public class BibliotecaApp {
         boolean success = false;
         try {
             library.borrowBook(userInput.getString("type the title of the book you would like to borrow"));
-        } catch(InvalidBookToReturnException InvalidBookToReturnEx) {
+        } catch(BookDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println("Sorry, that book does not exist in the library");
         }catch (BookIsCurrentlyCheckedOutException bookIsCurrentlyCheckecOurEx) {
             outputStream.print("Sorry, that book is currently checked out");
@@ -70,7 +70,6 @@ public class BibliotecaApp {
 
 
     public void displayLibrary() {
-
         for (Book book: library.getAvailableBooks()) {
             outputStream.println(book.author + ", " + book.title + ", " + book.year);
         }

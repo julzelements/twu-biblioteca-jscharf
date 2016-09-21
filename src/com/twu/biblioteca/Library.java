@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.io.PrintStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,7 +10,6 @@ public class Library {
 
     public Library() {
         this.books = new HashMap<String, Book>();
-        initializeLibrary();
     }
 
     public void add(Book book) {
@@ -29,9 +27,9 @@ public class Library {
         return availableBooks;
     }
 
-    public boolean borrowBook(String title) throws InvalidBookToReturnException, BookIsCurrentlyCheckedOutException {
+    public boolean borrowBook(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
         if (!bookExists(title)) {
-            throw new InvalidBookToReturnException();
+            throw new BookDoesNotExistInLibraryException();
         } else if (books.get(title).checkedOut) {
             throw new BookIsCurrentlyCheckedOutException();
         } else {
@@ -75,14 +73,5 @@ public class Library {
         return bookCount;
     }
 
-    public void initializeLibrary() {
-        Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
-        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
 
-        add(theGodOfSmallThings);
-        add(theWitches);
-        add(leviathanWakes);
-
-    }
 }

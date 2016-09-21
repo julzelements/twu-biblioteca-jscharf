@@ -21,6 +21,7 @@ public class LibraryTests {
         outputStream = new PrintStream(byteArrayOutputStream);
 
         library = new Library();
+        initializeLibrary(library);
     }
 
     @Test
@@ -49,7 +50,7 @@ public class LibraryTests {
         boolean exceptionWasThrown = false;
         try {
             library.borrowBook("The man who wasn't there");
-        } catch (InvalidBookToReturnException ex) {
+        } catch (BookDoesNotExistInLibraryException ex) {
             exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
@@ -94,5 +95,15 @@ public class LibraryTests {
             exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
+    }
+
+    public void initializeLibrary(Library library) {
+        Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
+        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
+
+        this.library.add(theGodOfSmallThings);
+        this.library.add(theWitches);
+        this.library.add(leviathanWakes);
     }
 }
