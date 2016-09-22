@@ -34,7 +34,7 @@ public class BibliotecaApp {
                 outputStream.println(UIStrings.quit);
                 break;
             } else {
-                outputStream.println("Incorrect choice, please try again");
+                outputStream.println(UIStrings.incorrectChoice);
             }
         }
     }
@@ -44,9 +44,9 @@ public class BibliotecaApp {
         try {
             success = library.borrowBook(userInput.getString(UIStrings.borrow));
         } catch(BookDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
-            outputStream.println("Sorry, that book does not exist in the library");
+            outputStream.println(UIStrings.bookDoesNotExist);
         }catch (BookIsCurrentlyCheckedOutException bookIsCurrentlyCheckecOurEx) {
-            outputStream.print("Sorry, that book is currently checked out");
+            outputStream.print(UIStrings.bookIsCheckedOut);
         } if (success) {
             outputStream.println(UIStrings.successfulBorrow);
         }
@@ -55,13 +55,13 @@ public class BibliotecaApp {
     public void returnItem() {
         boolean success = false;
         try {
-          success = library.returnBook(userInput.getString("Type the title of book to return"));
+          success = library.returnBook(userInput.getString(UIStrings.returnBook));
         } catch (BookIsAlreadyCheckedInException bookAlreadyCheckedInEx) {
-            outputStream.println("That book already exists in the library, please notify Librarian.");
+            outputStream.println(UIStrings.bookAlreadyCheckedIn);
         } catch (InvalidBookToReturnException invalidBookToReturnEx) {
-            outputStream.println("That is not a valid book to return");
+            outputStream.println(UIStrings.invalidBookToReturn);
         } if (success) {
-            outputStream.println("Thank you for returning the book!");
+            outputStream.println(UIStrings.successfulReturn);
         }
     }
 
