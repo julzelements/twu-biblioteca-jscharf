@@ -63,14 +63,14 @@ public class Library {
     }
 
 
-    public int bookCount() {
-        int bookCount = 0;
-        for (Book book : getBooks()) {
-            if (!book.checkedOut) {
-                bookCount++;
+    public int articleCount() {
+        int articleCount = 0;
+        for (Article article : getBooks()) {
+            if (!article.checkedOut) {
+                articleCount++;
             }
         }
-        return bookCount;
+        return articleCount;
     }
 
 

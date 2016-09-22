@@ -3,8 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
@@ -16,7 +14,7 @@ public class LibraryTests {
     @Before
     public void setUp() throws Exception {
         library = new Library();
-        initializeLibrary(library);
+        initializeLibrary();
     }
 
     @Test
@@ -65,9 +63,9 @@ public class LibraryTests {
 
     @Test
     public void libraryShouldHaveOnlyTwoBooksAfterBorrowingOneFromTheLibrary() throws Exception {
-        assertEquals(library.bookCount(), 3);
+        assertEquals(library.articleCount(), 3);
         library.borrowBook("Leviathan Wakes");
-        assertEquals(library.bookCount(), 2);
+        assertEquals(library.articleCount(), 2);
     }
 
     @Test
@@ -92,7 +90,7 @@ public class LibraryTests {
         assertTrue(exceptionWasThrown);
     }
 
-    public void initializeLibrary(Library library) {
+    public void initializeLibrary() {
         Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
         Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
         Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
@@ -100,5 +98,6 @@ public class LibraryTests {
         this.library.add(theGodOfSmallThings);
         this.library.add(theWitches);
         this.library.add(leviathanWakes);
+
     }
 }
