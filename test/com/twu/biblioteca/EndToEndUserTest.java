@@ -23,29 +23,82 @@ public class EndToEndUserTest {
     }
 
     @Test
-    public void testVerifyOutputStringWhenBorrowingABook() throws Exception {
+    public void userBorrowsBookSuccessfullyIsToldToEnjoyBook() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
-        String expectedOutput = UIStrings.welcome + "\n" + UIStrings.successfulBorrow + "\n" + UIStrings.quit + "\n";
+        String  expectedOutput=
+                        UIStrings.welcome + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.borrow + "\n" +
+                        UIStrings.successfulBorrow + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
 
     @Test
-    public void testVerifyOutputNonExistentBook() throws Exception {
+    public void userBorrowsBookSuccessfullyAndReturnsBookSuccessfully() throws Exception {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Book\nr\nThe Book\nq".getBytes());
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        String output = byteArrayOutputStream.toString();
+        String  expectedOutput=
+                UIStrings.welcome + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.borrow + "\n" +
+                        UIStrings.successfulBorrow + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.returnBook + "\n" +
+                        UIStrings.successfulReturn + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.quit + "\n";
+        assertEquals(expectedOutput, output);
+    }
+
+    @Test
+    public void userBorrowBookThatLibraryDoesNotHaveIsToldBookDoesNotExist() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Man Who Wasn't There\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
-        String expectedOutput = UIStrings.welcome + "\n" + UIStrings.bookDoesNotExist + "\n" + UIStrings.quit + "\n";
+        String expectedOutput =
+                        UIStrings.welcome + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.borrow + "\n" +
+                        UIStrings.bookDoesNotExist + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
     @Test
-    public void testVerifyOutputBookIsCheckedOutError() throws Exception {
+    public void userBorrowsBookTwiceIsToldThatBookIsAlreadyCheckedOut() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Book\nb\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
-        String expectedOutput = UIStrings.welcome + "\n" + UIStrings.successfulBorrow + "\n" + UIStrings.quit + "\n";
+        String expectedOutput =
+                        UIStrings.welcome + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.borrow + "\n" +
+                        UIStrings.successfulBorrow + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.borrow + "\n" +
+                        UIStrings.bookIsCheckedOut + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
 
+    @Test
+    public void userTriesToReturnABookThatIsNotInTheLibraryIsToldThatTheBookIsInvalidToReturn() throws Exception {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("r\nThe Man Who Wasn't There\nq".getBytes());
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        String output = byteArrayOutputStream.toString();
+        String expectedOutput =
+                        UIStrings.welcome + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.returnBook + "\n" +
+                        UIStrings.invalidBookToReturn + "\n" +
+                        UIStrings.menu + "\n" +
+                        UIStrings.quit + "\n";
+        assertEquals(expectedOutput, output);
+    }
 }

@@ -46,7 +46,7 @@ public class BibliotecaApp {
         } catch(BookDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println(UIStrings.bookDoesNotExist);
         }catch (BookIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
-            outputStream.print(UIStrings.bookIsCheckedOut);
+            outputStream.println(UIStrings.bookIsCheckedOut);
         } if (success) {
             outputStream.println(UIStrings.successfulBorrow);
         }

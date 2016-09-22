@@ -18,7 +18,7 @@ public class UserInput {
 
     public String getString(String prompt) {
         String inputLine;
-        out.print(prompt + " ");
+        out.println(prompt);
         try{
             inputLine = scanner.nextLine();
         }catch(NoSuchElementException e){
