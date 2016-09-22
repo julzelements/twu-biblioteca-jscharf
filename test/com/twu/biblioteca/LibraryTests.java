@@ -12,14 +12,9 @@ import static org.junit.Assert.*;
 public class LibraryTests {
 
     Library library;
-    PrintStream outputStream;
-    ByteArrayOutputStream byteArrayOutputStream;
 
     @Before
     public void setUp() throws Exception {
-        byteArrayOutputStream = new ByteArrayOutputStream();
-        outputStream = new PrintStream(byteArrayOutputStream);
-
         library = new Library();
         initializeLibrary(library);
     }

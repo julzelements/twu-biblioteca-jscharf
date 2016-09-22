@@ -10,6 +10,9 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.booleanThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -23,9 +26,8 @@ public class AppTests {
         Library library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
 
-
-
         UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(anyString())).thenReturn("gibbereish").thenReturn("q");
 
         byteArrayOutputStream = new ByteArrayOutputStream();
         outputStream = new PrintStream(byteArrayOutputStream);
@@ -36,7 +38,7 @@ public class AppTests {
     public void testWelcomePage() throws Exception {
         app.welcomeMessage();
         String greeting = byteArrayOutputStream.toString();
-        assertEquals(greeting, "Hello! \nWelcome to Biblioteca.\n\n");
+        assertEquals(greeting, UIStrings.welcome + "\n");
     }
 
     @Test
@@ -47,9 +49,19 @@ public class AppTests {
         assertEquals(testLibrary, library);
     }
 
+    @Test
+    public void whenUserSubmitsGibberishErrorStringShouldBeReturned() throws Exception {
+        app.welcomeOptions();
+        String errorMessage = byteArrayOutputStream.toString();
+        String expectedErrorMessage = "Incorrect choice, please try again\n" +
+        "Thank you, come again!\n";
+        assertEquals(errorMessage, expectedErrorMessage);
+    }
+
     @After
     public void tearDown() throws Exception {
         app = null;
-
+        outputStream = null;
+        byteArrayOutputStream = null;
     }
 }
