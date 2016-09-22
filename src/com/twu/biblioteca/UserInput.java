@@ -7,16 +7,18 @@ public class UserInput {
 
     private final InputStream in;
     private final Scanner scanner;
+    private final PrintStream out;
 
-    public UserInput(InputStream in) {
+    public UserInput(InputStream in, PrintStream out) {
         this.in = in;
+        this.out = out;
         scanner = new Scanner(in);
 
     }
 
     public String getString(String prompt) {
         String inputLine;
-        System.out.print(prompt + " ");
+        out.print(prompt + " ");
         try{
             inputLine = scanner.nextLine();
         }catch(NoSuchElementException e){
