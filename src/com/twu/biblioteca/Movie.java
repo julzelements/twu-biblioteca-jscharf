@@ -1,21 +1,13 @@
 package com.twu.biblioteca;
 
-/**
- * Created by jscharf on 22/09/2016.
- */
-public class Movie {
-    final String title;
+public class Movie extends Article{
     final String director;
-    final String year;
     final String rating;
-    boolean checkedOut;
 
     public Movie(String title, String director, String year, String rating) {
-        this.title = title;
+        super(title, year);
         this.director = director;
-        this.year = year;
         this.rating = rating;
-        this.checkedOut = false;
     }
 
     @Override
