@@ -36,7 +36,7 @@ public class Library {
     }
 
     public boolean borrowBook(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
-        if (!bookExists(title)) {
+        if (!articleExists(title)) {
             throw new BookDoesNotExistInLibraryException();
         } else if (books.get(title).checkedOut) {
             throw new BookIsCurrentlyCheckedOutException();
@@ -48,7 +48,7 @@ public class Library {
 
 
     public boolean returnBook(String bookTitle) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
-        if (!bookExists(bookTitle)) {
+        if (!articleExists(bookTitle)) {
             throw new InvalidBookToReturnException();
         } else if (!getBook(bookTitle).checkedOut) {
             throw new BookIsAlreadyCheckedInException();
@@ -58,9 +58,6 @@ public class Library {
         }
     }
 
-    public Boolean bookExists(String title) {
-        return (books.containsKey(title));
-    }
 
     public Book getBook(String title) {
         return books.get(title);

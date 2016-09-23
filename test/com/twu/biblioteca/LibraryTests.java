@@ -51,13 +51,13 @@ public class LibraryTests {
 
     @Test
     public void checkThatTitleNotValid() throws Exception {
-        Boolean bookExistsInLibrary = library.bookExists("The man who wasn't there");
+        Boolean bookExistsInLibrary = library.articleExists("The man who wasn't there");
         assertFalse(bookExistsInLibrary);
     }
 
     @Test
     public void checkThatTitleIsValid() throws Exception {
-        Boolean bookExistsInLibrary = library.bookExists("The Witches");
+        Boolean bookExistsInLibrary = library.articleExists("The Witches");
         assertTrue(bookExistsInLibrary);
     }
 
@@ -93,7 +93,7 @@ public class LibraryTests {
     @Test
     public void testAddShouldAddABookExpectBookToBeAdded() throws Exception {
         library.add(new Book("The Book", "Mr Man", "1996"));
-        assertTrue(library.bookExists("The Book"));
+        assertTrue(library.articleExists("The Book"));
     }
 
         @Test
