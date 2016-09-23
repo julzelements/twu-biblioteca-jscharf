@@ -7,13 +7,21 @@ import java.util.Iterator;
 public class Library {
 
     HashMap<String, Book> books;
+    HashMap<String, Movie> movies;
 
     public Library() {
         this.books = new HashMap<String, Book>();
+        this.movies = new HashMap<String, Movie>();
     }
 
-    public void add(Book book) {
-        books.put(book.title, book);
+    public void add(Article article) {
+        if (article.getClass().equals(Book.class)){
+            Book book = (Book)article;
+            books.put(book.title, book);
+        } else if (article.getClass().equals(Movie.class)){
+            Movie movie = (Movie)article;
+            movies.put(movie.title, movie);
+        }
     }
 
     public Collection<Book> getAvailableBooks() {
@@ -74,4 +82,12 @@ public class Library {
     }
 
 
+    public boolean articleExists(String article) {
+        if (books.containsKey(article)){
+            return true;
+        } else if (movies.containsKey(article)) {
+            return true;
+        } else return false;
+
+    }
 }

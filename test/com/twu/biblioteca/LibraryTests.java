@@ -90,6 +90,23 @@ public class LibraryTests {
         assertTrue(exceptionWasThrown);
     }
 
+    @Test
+    public void testAddShouldAddABookExpectBookToBeAdded() throws Exception {
+        library.add(new Book("The Book", "Mr Man", "1996"));
+        assertTrue(library.bookExists("The Book"));
+    }
+
+        @Test
+    public void testAddShouldAddAMovieExpectMovieToBeAdded() throws Exception {
+            library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
+            assertTrue(library.articleExists("Alien"));
+    }
+
+    @Test
+    public void testArticleExistsShouldBeFalseWhenNonExistetItemIsQueried() throws Exception {
+        assertFalse(library.articleExists("The Vanishing"));
+    }
+
     public void initializeLibrary() {
         Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
         Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
@@ -98,6 +115,12 @@ public class LibraryTests {
         this.library.add(theGodOfSmallThings);
         this.library.add(theWitches);
         this.library.add(leviathanWakes);
+
+        Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
+        Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9");
+
+        this.library.add(highlander);
+        this.library.add(aliens);
 
     }
 }
