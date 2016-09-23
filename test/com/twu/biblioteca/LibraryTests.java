@@ -19,16 +19,25 @@ public class LibraryTests {
 
     @Test
     public void testGetAvailableBooksShouldReturn3Books() throws Exception {
-        Collection<Book> books = library.getAvailableBooks();
-        assertTrue(books.size() == 3);
+        assertTrue(library.getAvailableBooks().size() == 3);
+    }
+
+    @Test
+    public void testGetAvailableMoviesShouldReturn2Movies() throws Exception {
+        assertTrue(library.getAvailableMovies().size() == 2);
     }
 
     @Test
     public void testRemoveBookFromLibraryShouldReturn2Books() throws Exception {
-            library.borrowBook("Leviathan Wakes");
-            Collection<Book> books = library.getAvailableBooks();
-            assertTrue(books.size() == 2);
-        }
+            library.borrowArticle("Leviathan Wakes");
+            assertTrue(library.getAvailableBooks().size() == 2);
+    }
+
+    @Test
+    public void testRemoveMovieFromLibraryShouldReturn1Movie() throws Exception {
+        library.borrowArticle("Aliens");
+        assertTrue(library.getAvailableMovies().size() == 1);
+    }
 
     @Test
     public void testRemoveTwoBooksFromLibrary() throws Exception {

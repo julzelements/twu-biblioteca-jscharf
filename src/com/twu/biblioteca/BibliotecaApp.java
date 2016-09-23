@@ -30,6 +30,7 @@ public class BibliotecaApp {
             if (choice.equals("b")) borrowItem();
             else if (choice.equals("r")) returnItem();
             else if (choice.equals("d")) displayLibrary();
+            else if (choice.equals("m")) displayMovies();
             else if (choice.equals("q")) {
                 outputStream.println(UIStrings.quit);
                 break;
@@ -42,7 +43,7 @@ public class BibliotecaApp {
     public void borrowItem() {
         boolean success = false;
         try {
-            success = library.borrowBook(userInput.getString(UIStrings.borrow));
+            success = library.borrowArticle(userInput.getString(UIStrings.borrow));
         } catch(BookDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println(UIStrings.bookDoesNotExist);
         }catch (BookIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
@@ -69,6 +70,12 @@ public class BibliotecaApp {
     public void displayLibrary() {
         for (Book book: library.getAvailableBooks()) {
             outputStream.println(book.author + ", " + book.title + ", " + book.year);
+        }
+    }
+
+    public void displayMovies() {
+        for (Movie movie: library.getAvailableMovies()) {
+            outputStream.println(movie.director + ", " + movie.title + ", " + movie.year + ", " + movie.rating + " stars");
         }
     }
 }

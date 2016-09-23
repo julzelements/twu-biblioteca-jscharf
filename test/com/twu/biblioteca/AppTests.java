@@ -25,6 +25,7 @@ public class AppTests {
     public void setUp() throws Exception {
         Library library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
+        library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
 
         UserInput mockUserInput = mock(UserInput.class);
         when(mockUserInput.getString(anyString())).thenReturn("gibbereish").thenReturn("q");
@@ -46,6 +47,14 @@ public class AppTests {
         app.displayLibrary();
         String library = byteArrayOutputStream.toString();
         String testLibrary = "Mr Author, The Book, 2000\n";
+        assertEquals(testLibrary, library);
+    }
+
+    @Test
+    public void testAppShouldDisplayMovies() throws Exception {
+        app.displayMovies();
+        String library = byteArrayOutputStream.toString();
+        String testLibrary = "Ridley Scott, Alien, 1979, 10 stars\n";
         assertEquals(testLibrary, library);
     }
 

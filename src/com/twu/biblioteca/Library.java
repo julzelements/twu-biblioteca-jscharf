@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,10 +11,14 @@ public class Library {
 
     HashMap<String, Book> books;
     HashMap<String, Movie> movies;
+    ArrayList<HashMap> catalog;
 
     public Library() {
         this.books = new HashMap<String, Book>();
         this.movies = new HashMap<String, Movie>();
+        this.catalog = new ArrayList<HashMap>();
+        catalog.add(books);
+        catalog.add(movies);
     }
 
     public void add(Article article) {
@@ -35,18 +42,6 @@ public class Library {
         return availableBooks;
     }
 
-    public boolean borrowBook(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
-        if (!articleExists(title)) {
-            throw new BookDoesNotExistInLibraryException();
-        } else if (books.get(title).checkedOut) {
-            throw new BookIsCurrentlyCheckedOutException();
-        } else {
-            getBook(title).checkOut();
-            return true;
-        }
-    }
-
-
     public boolean returnBook(String bookTitle) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
         if (!articleExists(bookTitle)) {
             throw new InvalidBookToReturnException();
@@ -58,15 +53,21 @@ public class Library {
         }
     }
 
-
     public Book getBook(String title) {
         return books.get(title);
+    }
+
+    public Article getMovie(String title) {
+        return movies.get(title);
     }
 
     public Collection<Book> getBooks() {
         return books.values();
     }
 
+    private Collection<Movie> getMovies() {
+        return movies.values();
+    }
 
     public int articleCount() {
         int articleCount = 0;
@@ -78,7 +79,6 @@ public class Library {
         return articleCount;
     }
 
-
     public boolean articleExists(String article) {
         if (books.containsKey(article)){
             return true;
@@ -86,5 +86,48 @@ public class Library {
             return true;
         } else return false;
 
+    }
+
+    public Collection<Movie> getAvailableMovies() {
+        Collection<Movie> availableMovies = getMovies();
+        for (Iterator<Movie> iterator = availableMovies.iterator(); iterator.hasNext();) {
+            Movie movie = iterator.next();
+            if (movie.checkedOut) {
+                iterator.remove();
+            }
+        }
+        return availableMovies;
+    }
+
+    public boolean borrowArticle(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
+        Article article = getArticleFromCollections(title);
+        if (article==null) {
+            throw new BookDoesNotExistInLibraryException();
+        } else if (article.checkedOut) {
+            throw new BookIsCurrentlyCheckedOutException();
+        } else {
+            article.checkOut();
+            return true;
+        }
+    }
+
+    public boolean borrowBook(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
+        if (!articleExists(title)) {
+            throw new BookDoesNotExistInLibraryException();
+        } else if (books.get(title).checkedOut) {
+            throw new BookIsCurrentlyCheckedOutException();
+        } else {
+            getBook(title).checkOut();
+            return true;
+        }
+    }
+
+    private Article getArticleFromCollections(String title) throws BookDoesNotExistInLibraryException{
+        for (HashMap<String, Article> collection : catalog) {
+            if (collection.containsKey(title)) {
+                return collection.get(title);
+            }
+        }
+        throw new BookDoesNotExistInLibraryException();
     }
 }
