@@ -24,7 +24,7 @@ public class EndToEndUserTest {
 
     @Test
     public void userBorrowsBookSuccessfullyIsToldToEnjoyBook() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
@@ -39,7 +39,7 @@ public class EndToEndUserTest {
 
     @Test
     public void userBorrowsBookSuccessfullyAndReturnsBookSuccessfully() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Book\nr\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nr\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
@@ -57,7 +57,7 @@ public class EndToEndUserTest {
 
     @Test
     public void userBorrowBookThatLibraryDoesNotHaveIsToldBookDoesNotExist() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Man Who Wasn't There\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Man Who Wasn't There\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
@@ -71,7 +71,7 @@ public class EndToEndUserTest {
     }
     @Test
     public void userBorrowsBookTwiceIsToldThatBookIsAlreadyCheckedOut() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("b\nThe Book\nb\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nbb\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =

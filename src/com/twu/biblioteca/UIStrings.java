@@ -3,10 +3,12 @@ package com.twu.biblioteca;
 public class UIStrings {
 
     public static final String   menu = "What would you like to do?\n" +
-                "Borrow an item? type: 'b'\n" +
-                "Return an item? type: 'r'\n" +
-                "See available book details? type: 'd'\n" +
-                "See available movie details? type: 'm'\n" +
+                "Borrow an book? type: 'bb'\n" +
+                "Borrow an movie? type: 'mb'\n" +
+                "Return a book? type: 'mr'\n" +
+                "Return a movie? type: 'br'\n" +
+                "See available book details? type: 'bd'\n" +
+                "See available movie details? type: 'md'\n" +
                 "Quit? type 'q'";
     public static final String  borrow = "Type the title of the item you would like to borrow";
     public static final String welcome = "Hello!\nWelcome to Biblioteca.";

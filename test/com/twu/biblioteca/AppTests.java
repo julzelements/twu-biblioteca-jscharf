@@ -6,13 +6,10 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Collection;
-import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.booleanThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +41,7 @@ public class AppTests {
 
     @Test
     public void testBibiliotecaAppShouldDisplayLibrary() {
-        app.displayLibrary();
+        app.displayBooks();
         String library = byteArrayOutputStream.toString();
         String testLibrary = "Mr Author, The Book, 2000\n";
         assertEquals(testLibrary, library);

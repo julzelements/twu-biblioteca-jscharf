@@ -27,10 +27,10 @@ public class BibliotecaApp {
     public void welcomeOptions() {
         while(true) {
             String choice = userInput.getString(UIStrings.menu);
-            if (choice.equals("b")) borrowItem();
+            if (choice.equals("bb")) borrowBook();
             else if (choice.equals("r")) returnItem();
-            else if (choice.equals("d")) displayLibrary();
-            else if (choice.equals("m")) displayMovies();
+            else if (choice.equals("bd")) displayBooks();
+            else if (choice.equals("md")) displayMovies();
             else if (choice.equals("q")) {
                 outputStream.println(UIStrings.quit);
                 break;
@@ -40,7 +40,7 @@ public class BibliotecaApp {
         }
     }
 
-    public void borrowItem() {
+    public void borrowBook() {
         boolean success = false;
         try {
             success = library.borrowArticle(userInput.getString(UIStrings.borrow));
@@ -67,7 +67,7 @@ public class BibliotecaApp {
     }
 
 
-    public void displayLibrary() {
+    public void displayBooks() {
         for (Book book: library.getAvailableBooks()) {
             outputStream.println(book.author + ", " + book.title + ", " + book.year);
         }
