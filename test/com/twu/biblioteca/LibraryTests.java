@@ -23,8 +23,8 @@ public class LibraryTests {
     }
 
     @Test
-    public void testGetAvailableMoviesShouldReturn2Movies() throws Exception {
-        assertTrue(library.getAvailableMovies().size() == 2);
+    public void testGetAvailableMoviesShouldReturn3Movies() throws Exception {
+        assertTrue(library.getAvailableMovies().size() == 3);
     }
 
     @Test
@@ -34,9 +34,9 @@ public class LibraryTests {
     }
 
     @Test
-    public void testRemoveMovieFromLibraryShouldReturn1Movie() throws Exception {
+    public void testRemoveMovieFromLibraryShouldReturn2Movies() throws Exception {
         library.borrowArticle("Aliens");
-        assertTrue(library.getAvailableMovies().size() == 1);
+        assertTrue(library.getAvailableMovies().size() == 2);
     }
 
     @Test
@@ -56,6 +56,20 @@ public class LibraryTests {
             exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
+    }
+
+    @Test
+    public void borrowBookWithMovieTitleShouldOnlyBorrowBook() throws Exception {
+        library.borrowBook("The Witches");
+        assertTrue(library.getAvailableBooks().size()==2);
+        assertTrue(library.getAvailableMovies().size()==3);
+    }
+
+    @Test
+    public void borrowMovieWithBookTitleShouldOnlyBorrowMovie() throws Exception {
+        library.borrowMovie("The Witches");
+        assertTrue(library.getAvailableBooks().size()==3);
+        assertTrue(library.getAvailableMovies().size()==2);
     }
 
     @Test
@@ -127,9 +141,11 @@ public class LibraryTests {
 
         Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
         Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9");
+        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
 
         this.library.add(highlander);
         this.library.add(aliens);
+        this.library.add(theWitchesMovie);
 
     }
 }

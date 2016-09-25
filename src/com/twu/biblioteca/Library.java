@@ -99,8 +99,8 @@ public class Library {
         return availableMovies;
     }
 
-    public boolean borrowArticle(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
-        Article article = getArticleFromCollections(title);
+    public boolean borrowArticle(String title, HashMap<String, Article> collection) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
+        Article article = collection.get(title);
         if (article==null) {
             throw new BookDoesNotExistInLibraryException();
         } else if (article.checkedOut) {
@@ -129,5 +129,10 @@ public class Library {
             }
         }
         throw new BookDoesNotExistInLibraryException();
+    }
+
+    public boolean borrowMovie(String title) {
+        borrowArticle(title, movies);
+        return true;
     }
 }
