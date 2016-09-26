@@ -11,14 +11,12 @@ public class Library {
 
     HashMap<String, Book> books;
     HashMap<String, Movie> movies;
-    ArrayList<HashMap> catalog;
+    HashMap<String, Article> articles;
 
     public Library() {
         this.books = new HashMap<String, Book>();
         this.movies = new HashMap<String, Movie>();
-        this.catalog = new ArrayList<HashMap>();
-        catalog.add(books);
-        catalog.add(movies);
+
     }
 
     public void add(Article article) {
@@ -99,18 +97,6 @@ public class Library {
         return availableMovies;
     }
 
-    public boolean borrowArticle(String title, HashMap<String, Article> collection) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
-        Article article = collection.get(title);
-        if (article==null) {
-            throw new BookDoesNotExistInLibraryException();
-        } else if (article.checkedOut) {
-            throw new BookIsCurrentlyCheckedOutException();
-        } else {
-            article.checkOut();
-            return true;
-        }
-    }
-
     public boolean borrowBook(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException {
         if (!articleExists(title)) {
             throw new BookDoesNotExistInLibraryException();
@@ -120,15 +106,6 @@ public class Library {
             getBook(title).checkOut();
             return true;
         }
-    }
-
-    private Article getArticleFromCollections(String title) throws BookDoesNotExistInLibraryException{
-        for (HashMap<String, Article> collection : catalog) {
-            if (collection.containsKey(title)) {
-                return collection.get(title);
-            }
-        }
-        throw new BookDoesNotExistInLibraryException();
     }
 
 }
