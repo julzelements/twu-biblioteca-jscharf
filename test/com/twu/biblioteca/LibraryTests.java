@@ -74,9 +74,9 @@ public class LibraryTests {
 
     @Test
     public void libraryShouldHaveOnlyTwoBooksAfterBorrowingOneFromTheLibrary() throws Exception {
-        assertEquals(library.articleCount(), 3);
+        assertEquals(library.getAvailableBooks().size(), 3);
         library.borrowBook("Leviathan Wakes");
-        assertEquals(library.articleCount(), 2);
+        assertEquals(library.getAvailableBooks().size(), 2);
     }
 
     @Test
@@ -120,12 +120,12 @@ public class LibraryTests {
 
     @Test
     public void tempTestGetArticlesByType() throws Exception {
-        assertTrue(library.getArticlesByType(Book.class).size() == 3 );
+        assertTrue(library.books.size() == 3 );
     }
 
     @Test
     public void tempTest2GetMoviesByType() throws Exception {
-        assertTrue(library.getArticlesByType(Movie.class).size() == 2 );
+        assertTrue(library.movies.size() == 2 );
     }
 
     public void initializeLibrary() {

@@ -5,27 +5,30 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class Library {
-
+    HashMap<String, Article> books;
+    HashMap<String, Article> movies;
     HashMap<String, Article> articles;
 
     public Library() {
-
         this.articles = new HashMap<String, Article>();
-
+        this.movies = new HashMap<String, Article>();
+        this.books = new HashMap<String, Article>();
     }
 
     public void add(Article article) {
         if (article.getClass().equals(Book.class)){
             Book book = (Book)article;
             articles.put(book.title, book);
+            books.put(book.title, book);
         } else if (article.getClass().equals(Movie.class)){
             Movie movie = (Movie)article;
             articles.put(movie.title, movie);
+            movies.put(movie.title, movie);
         }
     }
 
-    public Collection<Article> getAvailableBooks() {
-        Collection<Article> availableBooks = getBooks().values();
+    private Collection<Article> getAvailableArticles(HashMap<String, Article> collection) {
+        Collection<Article> availableBooks = collection.values();
         for (Iterator<Article> iterator = availableBooks.iterator(); iterator.hasNext();) {
             Article book = iterator.next();
             if (book.checkedOut) {
@@ -34,36 +37,34 @@ public class Library {
         }
         return availableBooks;
     }
+    public Collection<Article> getAvailableBooks() {
+        return getAvailableArticles(books);
+    }
+    public Collection<Article> getAvailableMovies() {
+        return getAvailableArticles(movies);
+    }
+
 
     public boolean returnBook(String title) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
-        return returnArticle(title, Book.class);
+        return returnArticle(title, books);
     }
     public boolean returnMovie(String title) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
-        return returnArticle(title, Movie.class);
+        return returnArticle(title, movies);
     }
 
 
 
-    public boolean returnArticle(String bookTitle, Class articleType) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
+    public boolean returnArticle(String bookTitle, HashMap<String, Article> collection) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
         if (!articleExists(bookTitle)) {
             throw new InvalidBookToReturnException();
-        } else if (!getBooks().get(bookTitle).checkedOut) {
+        } else if (!collection.get(bookTitle).checkedOut) {
             throw new BookIsAlreadyCheckedInException();
         } else {
-            getBooks().get(bookTitle).checkIn();
+            collection.get(bookTitle).checkIn();
             return true;
         }
     }
 
-    public int articleCount() {
-        int articleCount = 0;
-        for (Article article : getBooks().values()) {
-            if (!article.checkedOut) {
-                articleCount++;
-            }
-        }
-        return articleCount;
-    }
 
     public boolean articleExists(String article) {
         if (getBooks().containsKey(article)){
@@ -74,34 +75,24 @@ public class Library {
 
     }
 
-    public Collection<Article> getAvailableMovies() {
-        Collection<Article> availableMovies = getMovies().values();
-        for (Iterator<Article> iterator = availableMovies.iterator(); iterator.hasNext();) {
-            Article movie = iterator.next();
-            if (movie.checkedOut) {
-                iterator.remove();
-            }
-        }
-        return availableMovies;
-    }
-
     public boolean borrowBook(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException{
-        return borrowArticle(title, Book.class);
+        return borrowArticle(title, books);
     }
 
-    private boolean borrowArticle(String title, Class articleType) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException{
-        HashMap<String, Article> booksCollection = getArticlesByType(articleType);
+    public boolean borrowMovie(String title) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException{
+        return borrowArticle(title, movies);
+    }
+
+    private boolean borrowArticle(String title, HashMap<String, Article> collection) throws BookDoesNotExistInLibraryException, BookIsCurrentlyCheckedOutException{
         if (!articleExists(title)) {
             throw new BookDoesNotExistInLibraryException();
-        } else if (booksCollection.get(title).checkedOut) {
+        } else if (collection.get(title).checkedOut) {
             throw new BookIsCurrentlyCheckedOutException();
         } else {
-            booksCollection.get(title).checkOut();
+            collection.get(title).checkOut();
             return true;
         }
     }
-
-
 
     public HashMap<String, Article> getBooks() {
         return getArticlesByType(Book.class);
@@ -109,8 +100,6 @@ public class Library {
     public HashMap<String, Article> getMovies() {
         return getArticlesByType(Movie.class);
     }
-
-
 
     public HashMap<String,Article> getArticlesByType(Class articleType) {
         HashMap<String, Article> articlesByType = new HashMap<String, Article>();
