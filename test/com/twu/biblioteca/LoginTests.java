@@ -74,5 +74,10 @@ public class LoginTests {
         assertFalse(login.correctPassword("BadName", "wrongPassword"));
     }
 
-
+    @Test
+    public void testLoginWithValidUsernameAndPasswordShouldCreateInstanceOfBibliotecaApp() throws Exception {
+        Login login = new Login(mockUserInput);
+        login.correctPassword("Tommy", "password");
+        assertNotNull(login.app);
+    }
 }
