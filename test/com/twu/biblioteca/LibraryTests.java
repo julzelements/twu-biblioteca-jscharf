@@ -24,7 +24,7 @@ public class LibraryTests {
 
     @Test
     public void testGetAvailableMoviesShouldReturn3Movies() throws Exception {
-        assertTrue(library.getAvailableMovies().size() == 2);
+        assertTrue(library.getAvailableMovies().size() == 3);
     }
 
     @Test
@@ -47,28 +47,28 @@ public class LibraryTests {
         boolean exceptionWasThrown = false;
         try {
             library.borrowBook("The man who wasn't there");
-        } catch (BookDoesNotExistInLibraryException ex) {
+        } catch (ArticleDoesNotExistInLibraryException ex) {
             exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
     }
 
-//    @Test
-//    public void borrowBookWithMovieTitleShouldOnlyBorrowBook() throws Exception {
-//        library.borrowBook("The Witches");
-//        assertTrue(library.getAvailableBooks().size()==2);
-//        assertTrue(library.getAvailableMovies().size()==3);
-//    }
+    @Test
+    public void borrowBookWithMovieTitleShouldOnlyBorrowBook() throws Exception {
+        library.borrowBook("The Witches");
+        assertTrue(library.getAvailableBooks().size()==2);
+        assertTrue(library.getAvailableMovies().size()==3);
+    }
 
     @Test
     public void checkThatTitleNotValid() throws Exception {
-        Boolean bookExistsInLibrary = library.articleExists("The man who wasn't there");
+        Boolean bookExistsInLibrary = library.articleExistsInCatalog("The man who wasn't there");
         assertFalse(bookExistsInLibrary);
     }
 
     @Test
     public void checkThatTitleIsValid() throws Exception {
-        Boolean bookExistsInLibrary = library.articleExists("The Witches");
+        Boolean bookExistsInLibrary = library.articleExistsInCatalog("The Witches");
         assertTrue(bookExistsInLibrary);
     }
 
@@ -84,7 +84,7 @@ public class LibraryTests {
         boolean exceptionWasThrown = false;
         try {
             library.returnBook("Random invalid book");
-        } catch (InvalidBookToReturnException ex) {
+        } catch (InvalidArticleToReturnException ex) {
             exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
@@ -95,7 +95,7 @@ public class LibraryTests {
         boolean exceptionWasThrown = false;
         try {
             library.returnBook("The Witches");
-        } catch (BookIsAlreadyCheckedInException ex) {
+        } catch (ArticleIsAlreadyCheckedInException ex) {
             exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
@@ -104,28 +104,18 @@ public class LibraryTests {
     @Test
     public void testAddShouldAddABookExpectBookToBeAdded() throws Exception {
         library.add(new Book("The Book", "Mr Man", "1996"));
-        assertTrue(library.articleExists("The Book"));
+        assertTrue(library.articleExistsInCatalog("The Book"));
     }
 
         @Test
     public void testAddShouldAddAMovieExpectMovieToBeAdded() throws Exception {
             library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
-            assertTrue(library.articleExists("Alien"));
+            assertTrue(library.articleExistsInCatalog("Alien"));
     }
 
     @Test
     public void testArticleExistsShouldBeFalseWhenNonExistetItemIsQueried() throws Exception {
-        assertFalse(library.articleExists("The Vanishing"));
-    }
-
-    @Test
-    public void tempTestGetArticlesByType() throws Exception {
-        assertTrue(library.books.size() == 3 );
-    }
-
-    @Test
-    public void tempTest2GetMoviesByType() throws Exception {
-        assertTrue(library.movies.size() == 2 );
+        assertFalse(library.articleExistsInCatalog("The Vanishing"));
     }
 
     public void initializeLibrary() {
@@ -139,11 +129,11 @@ public class LibraryTests {
 
         Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
         Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9");
-//        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
+        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
 
         this.library.add(highlander);
         this.library.add(aliens);
-//        this.library.add(theWitchesMovie);
+        this.library.add(theWitchesMovie);
 
     }
 }

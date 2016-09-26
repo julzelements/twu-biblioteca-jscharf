@@ -48,7 +48,7 @@ public class EndToEndUserTest {
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
                         UIStrings.menu + "\n" +
-                        UIStrings.returnBook + "\n" +
+                        UIStrings.returnArticle + "\n" +
                         UIStrings.successfulReturn + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.quit + "\n";
@@ -64,7 +64,7 @@ public class EndToEndUserTest {
                         UIStrings.welcome + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.borrow + "\n" +
-                        UIStrings.bookDoesNotExist + "\n" +
+                        UIStrings.articleDoesNotExist + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
@@ -81,7 +81,7 @@ public class EndToEndUserTest {
                         UIStrings.successfulBorrow + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.borrow + "\n" +
-                        UIStrings.bookIsCheckedOut + "\n" +
+                        UIStrings.articleIsCheckedOut + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
@@ -95,8 +95,8 @@ public class EndToEndUserTest {
         String expectedOutput =
                         UIStrings.welcome + "\n" +
                         UIStrings.menu + "\n" +
-                        UIStrings.returnBook + "\n" +
-                        UIStrings.invalidBookToReturn + "\n" +
+                        UIStrings.returnArticle + "\n" +
+                        UIStrings.invalidArticleToReturn + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
