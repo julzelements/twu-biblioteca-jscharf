@@ -43,7 +43,7 @@ public class BibliotecaApp {
     public void borrowBook() {
         boolean success = false;
         try {
-            success = library.borrowArticle(userInput.getString(UIStrings.borrow));
+            success = library.borrowBook(userInput.getString(UIStrings.borrow));
         } catch(BookDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println(UIStrings.bookDoesNotExist);
         }catch (BookIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {

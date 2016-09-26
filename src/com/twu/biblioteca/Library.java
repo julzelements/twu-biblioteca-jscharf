@@ -131,8 +131,4 @@ public class Library {
         throw new BookDoesNotExistInLibraryException();
     }
 
-    public boolean borrowMovie(String title) {
-        borrowArticle(title, movies);
-        return true;
-    }
 }

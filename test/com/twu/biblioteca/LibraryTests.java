@@ -29,15 +29,10 @@ public class LibraryTests {
 
     @Test
     public void testRemoveBookFromLibraryShouldReturn2Books() throws Exception {
-            library.borrowArticle("Leviathan Wakes");
+            library.borrowBook("Leviathan Wakes");
             assertTrue(library.getAvailableBooks().size() == 2);
     }
 
-    @Test
-    public void testRemoveMovieFromLibraryShouldReturn2Movies() throws Exception {
-        library.borrowArticle("Aliens");
-        assertTrue(library.getAvailableMovies().size() == 2);
-    }
 
     @Test
     public void testRemoveTwoBooksFromLibrary() throws Exception {
@@ -63,13 +58,6 @@ public class LibraryTests {
         library.borrowBook("The Witches");
         assertTrue(library.getAvailableBooks().size()==2);
         assertTrue(library.getAvailableMovies().size()==3);
-    }
-
-    @Test
-    public void borrowMovieWithBookTitleShouldOnlyBorrowMovie() throws Exception {
-        library.borrowMovie("The Witches");
-        assertTrue(library.getAvailableBooks().size()==3);
-        assertTrue(library.getAvailableMovies().size()==2);
     }
 
     @Test
