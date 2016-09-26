@@ -16,6 +16,7 @@ public class Library {
     public Library() {
         this.books = new HashMap<String, Book>();
         this.movies = new HashMap<String, Movie>();
+        this.articles = new HashMap<String, Article>();
 
     }
 
@@ -30,7 +31,7 @@ public class Library {
     }
 
     public Collection<Book> getAvailableBooks() {
-        Collection<Book> availableBooks = getBooks();
+        Collection<Book> availableBooks = books.values();
         for (Iterator<Book> iterator = availableBooks.iterator(); iterator.hasNext();) {
             Book book = iterator.next();
             if (book.checkedOut) {
@@ -43,33 +44,17 @@ public class Library {
     public boolean returnBook(String bookTitle) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
         if (!articleExists(bookTitle)) {
             throw new InvalidBookToReturnException();
-        } else if (!getBook(bookTitle).checkedOut) {
+        } else if (!books.get(bookTitle).checkedOut) {
             throw new BookIsAlreadyCheckedInException();
         } else {
-            getBook(bookTitle).checkIn();
+            books.get(bookTitle).checkIn();
             return true;
         }
     }
 
-    public Book getBook(String title) {
-        return books.get(title);
-    }
-
-    public Article getMovie(String title) {
-        return movies.get(title);
-    }
-
-    public Collection<Book> getBooks() {
-        return books.values();
-    }
-
-    private Collection<Movie> getMovies() {
-        return movies.values();
-    }
-
     public int articleCount() {
         int articleCount = 0;
-        for (Article article : getBooks()) {
+        for (Article article : books.values()) {
             if (!article.checkedOut) {
                 articleCount++;
             }
@@ -87,7 +72,7 @@ public class Library {
     }
 
     public Collection<Movie> getAvailableMovies() {
-        Collection<Movie> availableMovies = getMovies();
+        Collection<Movie> availableMovies = movies.values();
         for (Iterator<Movie> iterator = availableMovies.iterator(); iterator.hasNext();) {
             Movie movie = iterator.next();
             if (movie.checkedOut) {
@@ -103,7 +88,7 @@ public class Library {
         } else if (books.get(title).checkedOut) {
             throw new BookIsCurrentlyCheckedOutException();
         } else {
-            getBook(title).checkOut();
+            books.get(title).checkOut();
             return true;
         }
     }
