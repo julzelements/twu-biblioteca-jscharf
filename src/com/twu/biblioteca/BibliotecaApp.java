@@ -68,13 +68,15 @@ public class BibliotecaApp {
 
 
     public void displayBooks() {
-        for (Book book: library.getAvailableBooks()) {
+        for (Article article: library.getAvailableBooks()) {
+            Book book = (Book)article;
             outputStream.println(book.author + ", " + book.title + ", " + book.year);
         }
     }
 
     public void displayMovies() {
-        for (Movie movie: library.getAvailableMovies()) {
+        for (Article article: library.getAvailableMovies()) {
+            Movie movie = (Movie)article;
             outputStream.println(movie.director + ", " + movie.title + ", " + movie.year + ", " + movie.rating + " stars");
         }
     }
