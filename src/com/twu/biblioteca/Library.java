@@ -2,10 +2,7 @@ package com.twu.biblioteca;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class Library {
 
@@ -21,6 +18,7 @@ public class Library {
     }
 
     public void add(Article article) {
+        articles.put(article.title, article);
         if (article.getClass().equals(Book.class)){
             Book book = (Book)article;
             books.put(book.title, book);
@@ -42,6 +40,10 @@ public class Library {
     }
 
     public boolean returnBook(String bookTitle) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
+        return returnArticle(bookTitle, Book.class);
+    }
+
+    public boolean returnArticle(String bookTitle, Class articleType) throws InvalidBookToReturnException, BookIsAlreadyCheckedInException{
         if (!articleExists(bookTitle)) {
             throw new InvalidBookToReturnException();
         } else if (!books.get(bookTitle).checkedOut) {
@@ -91,6 +93,16 @@ public class Library {
             books.get(title).checkOut();
             return true;
         }
+    }
+
+    public HashMap<String,Article> getArticlesByType(Class articleType) {
+        HashMap<String, Article> articlesByType = new HashMap<String, Article>();
+        for (Article article: articles.values()) {
+            if (articleType.equals(article.getClass())) {
+                articlesByType.put(article.title, article);
+            }
+        }
+        return articlesByType;
     }
 
 }

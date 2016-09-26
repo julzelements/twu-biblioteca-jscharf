@@ -118,6 +118,16 @@ public class LibraryTests {
         assertFalse(library.articleExists("The Vanishing"));
     }
 
+    @Test
+    public void tempTestGetArticlesByType() throws Exception {
+        assertTrue(library.getArticlesByType(Book.class).size() == 3 );
+    }
+
+    @Test
+    public void tempTest2GetMoviesByType() throws Exception {
+        assertTrue(library.getArticlesByType(Movie.class).size() == 2 );
+    }
+
     public void initializeLibrary() {
         Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
         Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
@@ -129,11 +139,11 @@ public class LibraryTests {
 
         Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
         Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9");
-        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
+//        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
 
         this.library.add(highlander);
         this.library.add(aliens);
-        this.library.add(theWitchesMovie);
+//        this.library.add(theWitchesMovie);
 
     }
 }
