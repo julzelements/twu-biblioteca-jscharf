@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -55,10 +53,6 @@ public class Library {
 
     public Book getBook(String title) {
         return books.get(title);
-    }
-
-    public Article getMovie(String title) {
-        return movies.get(title);
     }
 
     public Collection<Book> getBooks() {
