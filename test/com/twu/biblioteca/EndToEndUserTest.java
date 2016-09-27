@@ -13,6 +13,7 @@ public class EndToEndUserTest {
     PrintStream outputStream;
     ByteArrayOutputStream byteArrayOutputStream;
     Library library;
+    LoginValidator loginValidator;
 
     @Before
     public void setUp() throws Exception {
@@ -20,12 +21,14 @@ public class EndToEndUserTest {
         outputStream = new PrintStream(byteArrayOutputStream);
         library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
+        loginValidator = new LoginValidator(new UserDatabase());
+        
     }
 
     @Test
     public void userBorrowsBookSuccessfullyIsToldToEnjoyBook() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nq".getBytes());
-        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
                         UIStrings.welcome + "\n" +
@@ -40,7 +43,7 @@ public class EndToEndUserTest {
     @Test
     public void userBorrowsBookSuccessfullyAndReturnsBookSuccessfully() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nbr\nThe Book\nq".getBytes());
-        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
                 UIStrings.welcome + "\n" +
@@ -58,7 +61,7 @@ public class EndToEndUserTest {
     @Test
     public void userBorrowBookThatLibraryDoesNotHaveIsToldBookDoesNotExist() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Man Who Wasn't There\nq".getBytes());
-        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
                         UIStrings.welcome + "\n" +
@@ -72,7 +75,7 @@ public class EndToEndUserTest {
     @Test
     public void userBorrowsBookTwiceIsToldThatBookIsAlreadyCheckedOut() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nbb\nThe Book\nq".getBytes());
-        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
                         UIStrings.welcome + "\n" +
@@ -90,7 +93,7 @@ public class EndToEndUserTest {
     @Test
     public void userTriesToReturnABookThatIsNotInTheLibraryIsToldThatTheBookIsInvalidToReturn() throws Exception {
         ByteArrayInputStream inputStream = new ByteArrayInputStream("br\nThe Man Who Wasn't There\nq".getBytes());
-        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
+        new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
                         UIStrings.welcome + "\n" +

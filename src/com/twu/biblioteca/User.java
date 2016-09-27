@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import java.util.Stack;
+import java.util.HashSet;
 
 public class User {
     private final String libraryNumber;
@@ -9,7 +9,7 @@ public class User {
     private final String lastName;
     private final String email;
     private final String phoneNumber;
-    private Stack<Article> borrowedItems;
+    private HashSet<Article> borrowedItems;
 
     public User( String libraryNumber,String password, String firstName, String lastName, String email, String phoneNumber) {
         this.libraryNumber = libraryNumber;
@@ -18,7 +18,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.borrowedItems = new Stack<Article>();
+        this.borrowedItems = new HashSet<Article>();
     }
 
     public String getLibraryNumber() {
@@ -46,10 +46,10 @@ public class User {
     }
 
     public void borrowArticle(Article article) {
-        borrowedItems.push(article);
+        borrowedItems.add(article);
     }
 
-    public Stack<Article> getBorrowedArticles() {
+    public HashSet<Article> getBorrowedArticles() {
         return borrowedItems;
     }
 

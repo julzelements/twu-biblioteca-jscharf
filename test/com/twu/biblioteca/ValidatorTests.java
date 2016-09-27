@@ -7,75 +7,69 @@ import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.booleanThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ValidatorTests {
-    UserInput mockUserInput;
-    UserInput invalidMockUserInput;
+    UserDatabase database;
+
+    private  String libraryNumber;
+    private  String password;
+    private  String firstName;
+    private  String lastName;
+    private  String email;
+    private  String phoneNumber;
 
     @Before
     public void setUp() throws Exception {
-        mockUserInput = mock(UserInput.class);
-        when(mockUserInput.getString(anyString())).thenReturn("Tommy").thenReturn("password");
-        invalidMockUserInput = mock(UserInput.class);
-        when(invalidMockUserInput.getString(anyString())).thenReturn("BadName").thenReturn("BadPassword");
+        libraryNumber = "888-9999";
+        password = "password";
+        firstName = "Bob";
+        lastName = "Belcher";
+        email = "bob@gmail.com";
+        phoneNumber = "333-999-837";
+
+
+        database = new UserDatabase();
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        database.add(user);
+        
     }
 
     @Test
     public void testforLoginConstruction() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
+        LoginValidator validator = new LoginValidator(database);
         assertNotNull(validator);
     }
 
     @Test
-    public void testThatValidUserMockReturnsTommyThenPassword() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        assertTrue(validator.userInput.getString("anything").equals("Tommy"));
-        assertTrue(validator.userInput.getString("anything").equals("password"));
-    }
-
-    @Test
-    public void testThatInvalidUserMockReturnsBadNameThenBadPassword() throws Exception {
-        LoginValidator validator = new LoginValidator(invalidMockUserInput);
-        assertTrue(validator.userInput.getString("anything").equals("BadName"));
-        assertTrue(validator.userInput.getString("anything").equals("BadPassword"));
-    }
-
-    @Test
-    public void testLoginWithValidUsernameReturnsTrue() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        assertTrue(validator.userExists("Tommy"));
-    }
-
-    @Test
-    public void testLoginWithInvalidUsernameReturnsFalse() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        assertFalse(validator.userExists("BadName"));
-    }
-
-    @Test
     public void testLoginWithValidUserNameAndPassword() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        assertTrue(validator.correctPassword("Tommy", "password"));
+        LoginValidator validator = new LoginValidator(database);
+        assertTrue(validator.validateCredentials(libraryNumber, password));
     }
 
     @Test
-    public void testLoginWithValidUserNameAndInvalidPassword() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        assertFalse(validator.correctPassword("Tommy", "wrongPassword"));
+    public void testLoginWithIncorrectUserNameThrowsUserNameDoesNotExist() throws Exception {
+        boolean exceptionWasThrown = false;
+        LoginValidator validator = new LoginValidator(database);
+            try {
+                validator.validateCredentials("BadLibraryNumber", "wrongPassword");
+            } catch (UserNameDoesNotExistException ex) {
+                exceptionWasThrown = true;
+        }
+        assertTrue(exceptionWasThrown);
     }
 
     @Test
-    public void testLoginWithInvalidUserNameAndInvalidPassword() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        assertFalse(validator.correctPassword("BadName", "wrongPassword"));
-    }
-
-    @Test
-    public void testLoginWithValidUsernameAndPasswordShouldCreateInstanceOfBibliotecaApp() throws Exception {
-        LoginValidator validator = new LoginValidator(mockUserInput);
-        validator.correctPassword("Tommy", "password");
-        assertNotNull(validator.app);
+    public void testLoginWithCorrectUserNameIncorrectPasswordThrowsInvalidPasswordException() throws Exception {
+        boolean exceptionWasThrown = false;
+        LoginValidator validator = new LoginValidator(database);
+            try {
+                validator.validateCredentials(libraryNumber, "wrongPassword");
+            } catch (IncorrectPasswordException ex) {
+                exceptionWasThrown = true;
+        }
+        assertTrue(exceptionWasThrown);
     }
 }

@@ -7,11 +7,13 @@ public class BibliotecaApp {
     UserInput userInput;
     Library library;
     PrintStream outputStream;
+    LoginValidator loginValidator;
 
-    public BibliotecaApp(PrintStream outputStream, Library library, UserInput userInput) {
+    public BibliotecaApp(PrintStream outputStream, Library library, UserInput userInput, LoginValidator loginValidator) {
         this.library = library;
         this.outputStream = outputStream;
         this.userInput = userInput;
+        this.loginValidator = loginValidator;
     }
 
     public void run() {

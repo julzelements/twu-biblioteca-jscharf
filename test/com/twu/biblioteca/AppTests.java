@@ -17,6 +17,7 @@ public class AppTests {
     BibliotecaApp app;
     PrintStream outputStream;
     ByteArrayOutputStream byteArrayOutputStream;
+    LoginValidator loginValidator;
 
     @Before
     public void setUp() throws Exception {
@@ -24,12 +25,14 @@ public class AppTests {
         library.add(new Book("The Book", "Mr Author", "2000"));
         library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
 
+        loginValidator = new LoginValidator(new UserDatabase());
+
         UserInput mockUserInput = mock(UserInput.class);
         when(mockUserInput.getString(anyString())).thenReturn("gibbereish").thenReturn("q");
 
         byteArrayOutputStream = new ByteArrayOutputStream();
         outputStream = new PrintStream(byteArrayOutputStream);
-        app = new BibliotecaApp(outputStream, library, mockUserInput);
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
     }
 
     @Test

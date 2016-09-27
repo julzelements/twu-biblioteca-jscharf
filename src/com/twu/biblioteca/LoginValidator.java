@@ -1,39 +1,31 @@
 package com.twu.biblioteca;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.HashMap;
-
 public class LoginValidator {
 
-    UserInput userInput;
-    HashMap<String, String> userLogins;
-    public BibliotecaApp app;
+    private UserDatabase userDatabase;
 
-    public LoginValidator(UserInput userInput) {
-        this.userInput = userInput;
-        this.userLogins = new HashMap<String, String>();
-        userLogins.put("Tommy", "password");
+    LoginValidator(UserDatabase userDatabase) {
+        this.userDatabase = userDatabase;
     }
 
-    public boolean userExists(String loginName) {
-        if (userLogins.keySet().contains(loginName)) {
+    public boolean validateCredentials(String libraryNumber, String password) throws UserNameDoesNotExistException, IncorrectPasswordException {
+        if (!userExists(libraryNumber)) {
+            throw new UserNameDoesNotExistException();
+        }
+        String databasePassword = userDatabase.getUser(libraryNumber).getPassword();
+        if (password != databasePassword) {
+            throw new IncorrectPasswordException();
+        }
+        return true;
+    }
+
+    private boolean userExists(String libraryNumber) {
+        if (userDatabase.getUser(libraryNumber)!= null) {
             return true;
         }
         return false;
     }
 
-    private void bootBibliotecaApp() {
-        this.app = new BibliotecaApp(new PrintStream(new ByteArrayOutputStream()), new Library(), userInput);
-    }
 
-    public boolean correctPassword(String name, String password) {
-        if (!userExists(name))  {
-            return false;
-        } else if (userLogins.get(name).equals(password)) {
-           bootBibliotecaApp();
-            return true;
-        }
-            return false;
-    }
+
 }
