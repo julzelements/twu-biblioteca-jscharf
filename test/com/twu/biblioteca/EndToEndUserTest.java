@@ -39,7 +39,7 @@ public class EndToEndUserTest {
 
     @Test
     public void userBorrowsBookSuccessfullyAndReturnsBookSuccessfully() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nr\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nbr\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
@@ -89,7 +89,7 @@ public class EndToEndUserTest {
 
     @Test
     public void userTriesToReturnABookThatIsNotInTheLibraryIsToldThatTheBookIsInvalidToReturn() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("r\nThe Man Who Wasn't There\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("br\nThe Man Who Wasn't There\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream)).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =

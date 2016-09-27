@@ -4,13 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 
-public class Login {
+public class LoginValidator {
 
     UserInput userInput;
     HashMap<String, String> userLogins;
     public BibliotecaApp app;
 
-    public Login(UserInput userInput) {
+    public LoginValidator(UserInput userInput) {
         this.userInput = userInput;
         this.userLogins = new HashMap<String, String>();
         userLogins.put("Tommy", "password");

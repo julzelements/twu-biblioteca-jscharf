@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Stack;
+
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
@@ -41,5 +43,24 @@ public class UserTests {
         assertTrue(user.getPhoneNumber().equals(phoneNumber));
     }
 
+    @Test
+    public void testBorrowArticleShouldAddArticleToUserStackCountShouldBe1() throws Exception {
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        Stack<Article> borrowedArticles;
+        borrowedArticles = user.getBorrowedArticles();
+        assertTrue(borrowedArticles.size() == 0);
+        user.borrowArticle(new Book("The Book", "The Man", "2000"));
+        assertTrue(borrowedArticles.size() == 1);
+    }
 
+    @Test
+    public void testReturnArticleCountShouldBeZero() throws Exception {
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        Stack<Article> borrowedArticles;
+        borrowedArticles = user.getBorrowedArticles();
+        Book theBook = new Book("The Book", "The Man", "2000");
+        user.borrowArticle(theBook);
+        user.returnArticle(theBook);
+        assertTrue(borrowedArticles.size() == 0);
+    }
 }
