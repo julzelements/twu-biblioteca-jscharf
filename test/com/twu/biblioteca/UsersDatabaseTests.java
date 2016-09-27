@@ -14,7 +14,7 @@ public class UsersDatabaseTests {
     @Before
     public void setUp() throws Exception {
         database = new UserDatabase();
-        user = new User(libraryNumber, userName ,"First Name", "Last Name", "email address", "Phone number");
+        user = new User(libraryNumber, userName ,"First Name", "Last Name", "email address", "Phone number", false);
         database.add(user);
     }
 

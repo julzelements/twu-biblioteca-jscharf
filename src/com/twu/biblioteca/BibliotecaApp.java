@@ -8,6 +8,7 @@ public class BibliotecaApp {
     Library library;
     PrintStream outputStream;
     LoginValidator loginValidator;
+    User currentUser;
 
     public BibliotecaApp(PrintStream outputStream, Library library, UserInput userInput, LoginValidator loginValidator) {
         this.library = library;
@@ -136,6 +137,7 @@ public class BibliotecaApp {
             validateCredentials();
         }  if (success) {
             outputStream.println(UIStrings.credentialsAccepted);
+            currentUser = loginValidator.getUser(libraryNumber);
             welcomeOptions(); }
     }
 

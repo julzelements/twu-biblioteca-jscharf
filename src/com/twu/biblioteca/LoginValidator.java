@@ -27,5 +27,7 @@ public class LoginValidator {
     }
 
 
-
+    public User getUser(String libraryNumber) {
+        return userDatabase.getUser(libraryNumber);
+    }
 }

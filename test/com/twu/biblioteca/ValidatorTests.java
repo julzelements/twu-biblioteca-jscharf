@@ -32,7 +32,7 @@ public class ValidatorTests {
 
 
         database = new UserDatabase();
-        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
         database.add(user);
         
     }
@@ -71,5 +71,20 @@ public class ValidatorTests {
                 exceptionWasThrown = true;
         }
         assertTrue(exceptionWasThrown);
+    }
+
+    @Test
+    public void getUserShouldReturnUser() throws Exception {
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
+        LoginValidator validator = new LoginValidator(database);
+        User accessedUser = validator.getUser(libraryNumber);
+        assertTrue(user.equals(accessedUser));
+    }
+
+    @Test
+    public void getUserShouldReturnNullIfUserDoesNotExist() throws Exception {
+        LoginValidator validator = new LoginValidator(database);
+        User accessedUser = validator.getUser("random Wrong Number");
+        assertTrue(accessedUser == null);
     }
 }

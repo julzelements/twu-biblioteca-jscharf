@@ -28,13 +28,13 @@ public class UserTests {
 
     @Test
     public void testCreateUser() throws Exception {
-        User user = new User("Library Number", "Password" ,"First Name", "Last Name", "email address", "Phone number");
+        User user = new User("Library Number", "Password" ,"First Name", "Last Name", "email address", "Phone number", false);
         assertNotNull(user);
     }
 
     @Test
     public void testUserGetters() throws Exception {
-        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
         assertTrue(user.getLibraryNumber().equals(libraryNumber));
         assertTrue(user.getPassword().equals(password));
         assertTrue(user.getFirstName().equals(firstName));
@@ -45,7 +45,7 @@ public class UserTests {
 
     @Test
     public void testBorrowArticleShouldAddArticleToUserStackCountShouldBe1() throws Exception {
-        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
         Set<Article> borrowedArticles;
         borrowedArticles = user.getBorrowedArticles();
         assertTrue(borrowedArticles.size() == 0);
@@ -55,7 +55,7 @@ public class UserTests {
 
     @Test
     public void testReturnArticleCountShouldBeZero() throws Exception {
-        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
         Set<Article> borrowedArticles;
         borrowedArticles = user.getBorrowedArticles();
         Book theBook = new Book("The Book", "The Man", "2000");

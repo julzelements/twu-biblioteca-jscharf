@@ -44,7 +44,7 @@ public class AppTests {
         library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
 
 
-        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber);
+        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
         UserDatabase database = new UserDatabase();
         database.add(user);
 
@@ -142,7 +142,10 @@ public class AppTests {
         assertEquals(output, expectedOutput);
     }
 
+    @Test
+    public void displayUserDetailsShouldFormatUserDetails() throws Exception {
 
+    }
 
     @After
     public void tearDown() throws Exception {

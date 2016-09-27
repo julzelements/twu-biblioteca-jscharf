@@ -21,7 +21,7 @@ public class EndToEndUserTest {
         outputStream = new PrintStream(byteArrayOutputStream);
         library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
-        User user = new User("000-0000", "password", "John", "Smith", "john@email.com", "14 Abbey Rd");
+        User user = new User("000-0000", "password", "John", "Smith", "john@email.com", "14 Abbey Rd", false);
         UserDatabase database = new UserDatabase();
         database.add(user);
         loginValidator = new LoginValidator(database);
