@@ -21,17 +21,23 @@ public class EndToEndUserTest {
         outputStream = new PrintStream(byteArrayOutputStream);
         library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
-        loginValidator = new LoginValidator(new UserDatabase());
+        User user = new User("000-0000", "password", "John", "Smith", "john@email.com", "14 Abbey Rd");
+        UserDatabase database = new UserDatabase();
+        database.add(user);
+        loginValidator = new LoginValidator(database);
         
     }
 
     @Test
     public void userBorrowsBookSuccessfullyIsToldToEnjoyBook() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("000-0000\npassword\nbb\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
                         UIStrings.welcome + "\n" +
+                        UIStrings.enterLibraryNumber + "\n" +
+                        UIStrings.enterPassword + "\n" +
+                        UIStrings.credentialsAccepted + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
@@ -42,11 +48,14 @@ public class EndToEndUserTest {
 
     @Test
     public void userBorrowsBookSuccessfullyAndReturnsBookSuccessfully() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nbr\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("000-0000\npassword\nbb\nThe Book\nbr\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String  expectedOutput=
                 UIStrings.welcome + "\n" +
+                        UIStrings.enterLibraryNumber + "\n" +
+                        UIStrings.enterPassword + "\n" +
+                        UIStrings.credentialsAccepted + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
@@ -60,11 +69,14 @@ public class EndToEndUserTest {
 
     @Test
     public void userBorrowBookThatLibraryDoesNotHaveIsToldBookDoesNotExist() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Man Who Wasn't There\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("000-0000\npassword\nbb\nThe Man Who Wasn't There\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
                         UIStrings.welcome + "\n" +
+                        UIStrings.enterLibraryNumber + "\n" +
+                        UIStrings.enterPassword + "\n" +
+                        UIStrings.credentialsAccepted + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.articleDoesNotExist + "\n" +
@@ -74,11 +86,14 @@ public class EndToEndUserTest {
     }
     @Test
     public void userBorrowsBookTwiceIsToldThatBookIsAlreadyCheckedOut() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("bb\nThe Book\nbb\nThe Book\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("000-0000\npassword\nbb\nThe Book\nbb\nThe Book\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
                         UIStrings.welcome + "\n" +
+                        UIStrings.enterLibraryNumber + "\n" +
+                        UIStrings.enterPassword + "\n" +
+                        UIStrings.credentialsAccepted + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
@@ -92,11 +107,14 @@ public class EndToEndUserTest {
 
     @Test
     public void userTriesToReturnABookThatIsNotInTheLibraryIsToldThatTheBookIsInvalidToReturn() throws Exception {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream("br\nThe Man Who Wasn't There\nq".getBytes());
+        ByteArrayInputStream inputStream = new ByteArrayInputStream("000-0000\npassword\nbr\nThe Man Who Wasn't There\nq".getBytes());
         new BibliotecaApp(outputStream, library, new UserInput(inputStream, outputStream), loginValidator).run();
         String output = byteArrayOutputStream.toString();
         String expectedOutput =
                         UIStrings.welcome + "\n" +
+                        UIStrings.enterLibraryNumber + "\n" +
+                        UIStrings.enterPassword + "\n" +
+                        UIStrings.credentialsAccepted + "\n" +
                         UIStrings.menu + "\n" +
                         UIStrings.returnArticle + "\n" +
                         UIStrings.invalidArticleToReturn + "\n" +
