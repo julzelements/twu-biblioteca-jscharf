@@ -13,7 +13,7 @@ public class LoginValidator {
             throw new UserNameDoesNotExistException();
         }
         String databasePassword = userDatabase.getUser(libraryNumber).getPassword();
-        if (password != databasePassword) {
+        if (!password.equals(databasePassword)) {
             throw new IncorrectPasswordException();
         }
         return true;

@@ -22,4 +22,11 @@ public class UIStrings {
     public static final String invalidArticleToReturn = "That is not a valid article to return";
     public static final String successfulReturn = "Thank you for returning the article!";
 
+    public static final String enterLibraryNumber = "What would you like to do?\n" +
+            "Login? type your Library Number (xxx-xxxx)\n" +
+            "Quit? type 'q'";
+    public static final String enterPassword = "Please enter your password";
+    public static final String credentialsAccepted = "Credentials accepted";
+    public static final String userNameDoesNotExist = "Username does not exist in the system";
+    public static final String incorrectPassword = "Incorrect password";
 }
