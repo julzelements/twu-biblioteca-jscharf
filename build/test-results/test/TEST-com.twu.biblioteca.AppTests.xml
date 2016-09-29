@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.twu.biblioteca.AppTests" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-09-29T01:21:26" hostname="Julians-MacBook-Pro.local" time="0.125">
+  <properties/>
+  <testcase name="displayUserDetailsShouldFormatUserDetails" classname="com.twu.biblioteca.AppTests" time="0.005"/>
+  <testcase name="whenUserSubmitsGibberishErrorStringShouldBeReturned" classname="com.twu.biblioteca.AppTests" time="0.115"/>
+  <testcase name="testWelcomePage" classname="com.twu.biblioteca.AppTests" time="0.0"/>
+  <testcase name="shouldThrowErrorInvalidUserName" classname="com.twu.biblioteca.AppTests" time="0.001"/>
+  <testcase name="validateCredentialsShouldAcceptUserValidUserCredentials" classname="com.twu.biblioteca.AppTests" time="0.001"/>
+  <testcase name="testBibiliotecaAppShouldDisplayLibrary" classname="com.twu.biblioteca.AppTests" time="0.0"/>
+  <testcase name="shouldThrowErrorInvalidPassword" classname="com.twu.biblioteca.AppTests" time="0.0"/>
+  <testcase name="testAppShouldDisplayMovies" classname="com.twu.biblioteca.AppTests" time="0.0"/>
+  <testcase name="validateCredentialsShouldQuitWhenUserTypesQ" classname="com.twu.biblioteca.AppTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

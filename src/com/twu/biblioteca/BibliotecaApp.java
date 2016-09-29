@@ -114,7 +114,7 @@ public class BibliotecaApp {
 
     public void validateCredentials() {
         String libraryNumber;
-        String password;
+        String pasord;
 
             libraryNumber = userInput.getString(UIStrings.enterLibraryNumber);
             if (libraryNumber.equals("q")) {

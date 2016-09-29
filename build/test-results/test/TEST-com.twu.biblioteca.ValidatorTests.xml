@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.twu.biblioteca.ValidatorTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2016-09-29T01:21:27" hostname="Julians-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="getUserShouldReturnNullIfUserDoesNotExist" classname="com.twu.biblioteca.ValidatorTests" time="0.0"/>
+  <testcase name="testLoginWithValidUserNameAndPassword" classname="com.twu.biblioteca.ValidatorTests" time="0.0"/>
+  <testcase name="testLoginWithIncorrectUserNameThrowsUserNameDoesNotExist" classname="com.twu.biblioteca.ValidatorTests" time="0.001"/>
+  <testcase name="getUserShouldReturnUser" classname="com.twu.biblioteca.ValidatorTests" time="0.0"/>
+  <testcase name="testforLoginConstruction" classname="com.twu.biblioteca.ValidatorTests" time="0.0"/>
+  <testcase name="testLoginWithCorrectUserNameIncorrectPasswordThrowsInvalidPasswordException" classname="com.twu.biblioteca.ValidatorTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
