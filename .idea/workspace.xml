@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9f0a4062-17e7-47f9-91bb-83ab2a6b357e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" />
     </list>
     <ignored path="biblioteca.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,8 +114,8 @@
       <file leaf-file-name="BibliotecaApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="132" column="56" selection-start-line="132" selection-start-column="56" selection-end-line="132" selection-end-column="56" />
+            <state relative-caret-position="167">
+              <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -949,14 +950,7 @@
       <workItem from="1474862212334" duration="11898000" />
       <workItem from="1474925453788" duration="25015000" />
       <workItem from="1475048470671" duration="1768000" />
-      <workItem from="1475110460355" duration="2111000" />
-    </task>
-    <task id="LOCAL-00037" summary="All user stories complete&#10;">
-      <created>1473737902073</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1473737902073</updated>
+      <workItem from="1475110460355" duration="2169000" />
     </task>
     <task id="LOCAL-00038" summary="Version 2 Begins&#10;">
       <created>1473839786267</created>
@@ -1294,7 +1288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1474959998501</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Should be broken&#10;">
+      <created>1475129324568</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1475129324570</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1330,7 +1331,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239617000" />
+    <option name="totallyTimeSpent" value="239675000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1343,10 +1344,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1415,7 +1416,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="EndToEndTests are completed and running green" />
     <MESSAGE value="Book now extends Article&#10;" />
     <MESSAGE value="Movie extends article" />
     <MESSAGE value="Library.bookCount is now library.articleCount" />
@@ -1440,7 +1440,8 @@
     <MESSAGE value="UI for login is working&#10;End to end functional tests are broken" />
     <MESSAGE value="Functional Tests running green" />
     <MESSAGE value="App now has user as a field.&#10;Login credetials will return an instance of the user&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="App now has user as a field.&#10;Login credetials will return an instance of the user&#10;" />
+    <MESSAGE value="Should be broken&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Should be broken&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1904,8 +1905,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="132" column="56" selection-start-line="132" selection-start-column="56" selection-end-line="132" selection-end-column="56" />
+        <state relative-caret-position="167">
+          <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
           <folding />
         </state>
       </provider>
