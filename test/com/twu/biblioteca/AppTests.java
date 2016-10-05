@@ -10,8 +10,7 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AppTests {
 
@@ -22,6 +21,41 @@ public class AppTests {
     private  String email;
     private  String phoneNumber;
 
+
+    private  String adminLibraryNumber;
+    private  String adminPassword;
+    private  String adminFirstName;
+    private  String adminLastName;
+    private  String adminEmail;
+    private  String adminPhoneNumber;
+
+    public User getTestAdmin() {
+        adminLibraryNumber = "000-0000";
+        adminPassword = "Word";
+        adminFirstName = "Important";
+        adminLastName = "Person";
+        adminEmail = "importantperson@gmail.com";
+        adminPhoneNumber = "33-999-837";
+        return new User(adminLibraryNumber, adminPassword, adminFirstName, adminLastName, adminEmail, adminPhoneNumber, true);
+    }
+
+    private User getTestUser() {
+        libraryNumber = "888-9999";
+        password = "password";
+        firstName = "Bob";
+        lastName = "Belcher";
+        email = "bob@gmail.com";
+        phoneNumber = "333-999-837";
+        return new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
+    }
+
+    private Library getTestLibrary() {
+        library = new Library();
+        library.add(new Book("The Book", "Mr Author", "2000"));
+        library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
+        return library;
+    }
+
     BibliotecaApp app;
     PrintStream outputStream;
     ByteArrayOutputStream byteArrayOutputStream;
@@ -29,24 +63,15 @@ public class AppTests {
     UserInput userInput;
     Library library;
 
+
     @Before
     public void setUp() throws Exception {
-        libraryNumber = "888-9999";
-        password = "password";
-        firstName = "Bob";
-        lastName = "Belcher";
-        email = "bob@gmail.com";
-        phoneNumber = "333-999-837";
 
+        library = getTestLibrary();
 
-        library = new Library();
-        library.add(new Book("The Book", "Mr Author", "2000"));
-        library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
-
-
-        User user = new User(libraryNumber, password, firstName, lastName, email, phoneNumber, false);
         UserDatabase database = new UserDatabase();
-        database.add(user);
+        database.add(getTestUser());
+        database.add(getTestAdmin());
 
         loginValidator = new LoginValidator(database);
 
@@ -87,7 +112,7 @@ public class AppTests {
         when(mockUserInput.getString(anyString())).thenReturn("gibbereish").thenReturn("q");
 
         app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
-        app.welcomeOptions();
+        app.userWelcomeOptions();
         String errorMessage = byteArrayOutputStream.toString();
         String expectedErrorMessage = "Incorrect choice, please try again\n" +
         "Thank you, come again!\n";
@@ -116,6 +141,28 @@ public class AppTests {
         String output = byteArrayOutputStream.toString();
         String expectedOutput = UIStrings.credentialsAccepted + "\n" + UIStrings.quit + "\n";
         assertEquals(output, expectedOutput);
+    }
+
+    @Test
+    public void loginWithValidUserShouldShowUserMenu() throws Exception {
+        UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(UIStrings.userMenu)).thenReturn("q");
+
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
+        app.login(libraryNumber, password);
+
+        verify(mockUserInput, times(1)).getString(UIStrings.userMenu);
+    }
+
+    @Test
+    public void loginWithValidAdminShouldShowAdminMenu() throws Exception {
+        UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(UIStrings.adminMenu)).thenReturn("q");
+
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
+        app.login(adminLibraryNumber, adminPassword);
+
+        verify(mockUserInput, times(1)).getString(UIStrings.adminMenu);
     }
 
     @Test

@@ -27,9 +27,9 @@ public class BibliotecaApp {
         outputStream.println(UIStrings.welcome);
     }
 
-    public void welcomeOptions() {
-        while(true) {
-            String choice = userInput.getString(UIStrings.menu);
+    public void userWelcomeOptions() {
+        while (true) {
+            String choice = userInput.getString(UIStrings.userMenu);
             if (choice.equals("bb")) borrowBook();
             else if (choice.equals("br")) returnBook();
             else if (choice.equals("mr")) returnMovie();
@@ -45,15 +45,31 @@ public class BibliotecaApp {
         }
     }
 
+    public void adminWelcomeOptions() {
+        while (true) {
+            String choice = userInput.getString(UIStrings.adminMenu);
+            if (choice.equals("bb")) borrowBook();
+            else if (choice.equals("bd")) displayBooks();
+            else if (choice.equals("md")) displayMovies();
+            else if (choice.equals("q")) {
+                outputStream.println(UIStrings.quit);
+                break;
+            } else {
+                outputStream.println(UIStrings.incorrectChoice);
+            }
+        }
+    }
+
     public void borrowBook() {
         boolean success = false;
         try {
             success = library.borrowBook(userInput.getString(UIStrings.borrow));
-        } catch(ArticleDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
+        } catch (ArticleDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println(UIStrings.articleDoesNotExist);
-        }catch (ArticleIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
+        } catch (ArticleIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
             outputStream.println(UIStrings.articleIsCheckedOut);
-        } if (success) {
+        }
+        if (success) {
             outputStream.println(UIStrings.successfulBorrow);
         }
     }
@@ -62,11 +78,12 @@ public class BibliotecaApp {
         boolean success = false;
         try {
             success = library.borrowMovie(userInput.getString(UIStrings.borrow));
-        } catch(ArticleDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
+        } catch (ArticleDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println(UIStrings.articleDoesNotExist);
-        }catch (ArticleIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
+        } catch (ArticleIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
             outputStream.println(UIStrings.articleIsCheckedOut);
-        } if (success) {
+        }
+        if (success) {
             outputStream.println(UIStrings.successfulBorrow);
         }
     }
@@ -74,12 +91,13 @@ public class BibliotecaApp {
     public void returnBook() {
         boolean success = false;
         try {
-          success = library.returnBook(userInput.getString(UIStrings.returnArticle));
+            success = library.returnBook(userInput.getString(UIStrings.returnArticle));
         } catch (ArticleIsAlreadyCheckedInException bookAlreadyCheckedInEx) {
             outputStream.println(UIStrings.articleIsAlreadyCheckedIn);
         } catch (InvalidArticleToReturnException invalidBookToReturnEx) {
             outputStream.println(UIStrings.invalidArticleToReturn);
-        } if (success) {
+        }
+        if (success) {
             outputStream.println(UIStrings.successfulReturn);
         }
     }
@@ -87,27 +105,28 @@ public class BibliotecaApp {
     public void returnMovie() {
         boolean success = false;
         try {
-          success = library.returnMovie(userInput.getString(UIStrings.returnArticle));
+            success = library.returnMovie(userInput.getString(UIStrings.returnArticle));
         } catch (ArticleIsAlreadyCheckedInException bookAlreadyCheckedInEx) {
             outputStream.println(UIStrings.articleIsAlreadyCheckedIn);
         } catch (InvalidArticleToReturnException invalidBookToReturnEx) {
             outputStream.println(UIStrings.invalidArticleToReturn);
-        } if (success) {
+        }
+        if (success) {
             outputStream.println(UIStrings.successfulReturn);
         }
     }
 
 
     public void displayBooks() {
-        for (Article article: library.getAvailableBooks()) {
-            Book book = (Book)article;
+        for (Article article : library.getAvailableBooks()) {
+            Book book = (Book) article;
             outputStream.println(book.author + ", " + book.title + ", " + book.year);
         }
     }
 
     public void displayMovies() {
-        for (Article article: library.getAvailableMovies()) {
-            Movie movie = (Movie)article;
+        for (Article article : library.getAvailableMovies()) {
+            Movie movie = (Movie) article;
             outputStream.println(movie.director + ", " + movie.title + ", " + movie.year + ", " + movie.rating + " stars");
         }
     }
@@ -116,14 +135,14 @@ public class BibliotecaApp {
         String libraryNumber;
         String password;
 
-            libraryNumber = userInput.getString(UIStrings.enterLibraryNumber);
-            if (libraryNumber.equals("q")) {
-                outputStream.println(UIStrings.quit);
-            } else {
-                password = userInput.getString(UIStrings.enterPassword);
-                login(libraryNumber, password);
-            }
+        libraryNumber = userInput.getString(UIStrings.enterLibraryNumber);
+        if (libraryNumber.equals("q")) {
+            outputStream.println(UIStrings.quit);
+        } else {
+            password = userInput.getString(UIStrings.enterPassword);
+            login(libraryNumber, password);
         }
+    }
 
     public void login(String libraryNumber, String password) {
         boolean success = false;
@@ -135,10 +154,16 @@ public class BibliotecaApp {
         } catch (IncorrectPasswordException ex) {
             outputStream.println(UIStrings.incorrectPassword);
             validateCredentials();
-        }  if (success) {
+        }
+        if (success) {
             outputStream.println(UIStrings.credentialsAccepted);
             currentUser = loginValidator.getUser(libraryNumber);
-            welcomeOptions(); }
+            if (currentUser.isAdmin) {
+                adminWelcomeOptions();
+            } else {
+                userWelcomeOptions();
+            }
+        }
     }
 
 }

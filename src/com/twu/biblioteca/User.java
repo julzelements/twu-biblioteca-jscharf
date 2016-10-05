@@ -9,7 +9,7 @@ public class User {
     private final String lastName;
     private final String email;
     private final String phoneNumber;
-    private final boolean isAdmin;
+    public final boolean isAdmin;
     private HashSet<Article> borrowedItems;
 
     public User(String libraryNumber,String password, String firstName, String lastName, String email, String phoneNumber, boolean isAdmin) {

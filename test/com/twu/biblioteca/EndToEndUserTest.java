@@ -38,10 +38,10 @@ public class EndToEndUserTest {
                         UIStrings.enterLibraryNumber + "\n" +
                         UIStrings.enterPassword + "\n" +
                         UIStrings.credentialsAccepted + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
@@ -56,13 +56,13 @@ public class EndToEndUserTest {
                         UIStrings.enterLibraryNumber + "\n" +
                         UIStrings.enterPassword + "\n" +
                         UIStrings.credentialsAccepted + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.returnArticle + "\n" +
                         UIStrings.successfulReturn + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
@@ -77,10 +77,10 @@ public class EndToEndUserTest {
                         UIStrings.enterLibraryNumber + "\n" +
                         UIStrings.enterPassword + "\n" +
                         UIStrings.credentialsAccepted + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.articleDoesNotExist + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
@@ -94,13 +94,13 @@ public class EndToEndUserTest {
                         UIStrings.enterLibraryNumber + "\n" +
                         UIStrings.enterPassword + "\n" +
                         UIStrings.credentialsAccepted + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.successfulBorrow + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.borrow + "\n" +
                         UIStrings.articleIsCheckedOut + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }
@@ -115,10 +115,10 @@ public class EndToEndUserTest {
                         UIStrings.enterLibraryNumber + "\n" +
                         UIStrings.enterPassword + "\n" +
                         UIStrings.credentialsAccepted + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.returnArticle + "\n" +
                         UIStrings.invalidArticleToReturn + "\n" +
-                        UIStrings.menu + "\n" +
+                        UIStrings.userMenu + "\n" +
                         UIStrings.quit + "\n";
         assertEquals(expectedOutput, output);
     }

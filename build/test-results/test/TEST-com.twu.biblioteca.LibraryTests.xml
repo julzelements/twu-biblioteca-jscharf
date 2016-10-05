@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.twu.biblioteca.LibraryTests" tests="14" skipped="0" failures="0" errors="0" timestamp="2016-09-29T01:21:27" hostname="Julians-MacBook-Pro.local" time="0.006">
+<testsuite name="com.twu.biblioteca.LibraryTests" tests="14" skipped="0" failures="0" errors="0" timestamp="2016-09-29T06:13:37" hostname="Julians-MacBook-Pro.local" time="0.006">
   <properties/>
   <testcase name="checkThatTitleNotValid" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="testArticleExistsShouldBeFalseWhenNonExistetItemIsQueried" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="libraryShouldHaveOnlyTwoBooksAfterBorrowingOneFromTheLibrary" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
-  <testcase name="testGetAvailableMoviesShouldReturn3Movies" classname="com.twu.biblioteca.LibraryTests" time="0.001"/>
+  <testcase name="testGetAvailableMoviesShouldReturn3Movies" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="testRemoveNonExistentBookFromLibrary" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="testRemoveTwoBooksFromLibrary" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="testAddShouldAddAMovieExpectMovieToBeAdded" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="checkThatTitleIsValid" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="borrowBookWithMovieTitleShouldOnlyBorrowBook" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
-  <testcase name="testAddShouldAddABookExpectBookToBeAdded" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
+  <testcase name="testAddShouldAddABookExpectBookToBeAdded" classname="com.twu.biblioteca.LibraryTests" time="0.001"/>
   <testcase name="testWhenUserTriesToReturnABookThatIsAlreadyInTheLibraryShouldGetErrorMessage" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="testWhenUserTriesToReturnInvalidBookShouldGetErrorMessage" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
   <testcase name="testGetAvailableBooksShouldReturn3Books" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
-  <testcase name="testRemoveBookFromLibraryShouldReturn2Books" classname="com.twu.biblioteca.LibraryTests" time="0.0"/>
+  <testcase name="testRemoveBookFromLibraryShouldReturn2Books" classname="com.twu.biblioteca.LibraryTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

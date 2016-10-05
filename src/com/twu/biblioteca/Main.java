@@ -26,9 +26,11 @@ public class Main {
     public static LoginValidator getLoginValidator() {
         UserDatabase userDatabase = new UserDatabase();
         User user = new User("000-0000", "password" ,"First Name", "Last Name", "email address", "Phone number", false);
-        User admin = new User("999-999", "admin" ,"Admin Name", "Admin Last Name", "email address", "Phone number", true);
+        User admin = new User("999-9999", "admin" ,"Admin Name", "Admin Last Name", "email address", "Phone number", true);
 
         userDatabase.add(user);
+        userDatabase.add(admin);
+
         LoginValidator loginValidator = new LoginValidator(userDatabase);
         return loginValidator;
     }
