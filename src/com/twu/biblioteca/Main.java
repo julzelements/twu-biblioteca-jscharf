@@ -15,7 +15,7 @@ public class Main {
     public static Library getLibrary(){
         Library library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
-        library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
+        library.add(new Movie("Alien", "Ridley Scott", "1979", "10", "checked in"));
         return library;
     }
 

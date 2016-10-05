@@ -86,7 +86,7 @@ public class Library {
         } else if (collection.get(title).checkedOut) {
             throw new ArticleIsCurrentlyCheckedOutException();
         } else {
-            collection.get(title).checkOut();
+            collection.get(title).checkOut("fix me");
             return true;
         }
     }

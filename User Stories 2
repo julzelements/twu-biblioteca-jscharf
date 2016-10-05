@@ -16,7 +16,7 @@ Users must now login using their library number (which is in the format xxx-xxxx
 and a password in order to check-out and return books.
 User credentials are predefined, so registering new users is not part of this story.
 
-User Accounts - User information -
+DONE: User Accounts - User information -
 As a customer, I want to be able to see my user information
 (name, email address and phone number),
 so that I know that the library can contact me.

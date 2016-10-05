@@ -109,7 +109,7 @@ public class LibraryTests {
 
         @Test
     public void testAddShouldAddAMovieExpectMovieToBeAdded() throws Exception {
-            library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
+            library.add(new Movie("Alien", "Ridley Scott", "1979", "10", "checked in"));
             assertTrue(library.articleExistsInCatalog("Alien"));
     }
 
@@ -127,9 +127,9 @@ public class LibraryTests {
         this.library.add(theWitches);
         this.library.add(leviathanWakes);
 
-        Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
-        Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9");
-        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
+        Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2", "checked in");
+        Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9", "checked in");
+        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7", "checked in");
 
         this.library.add(highlander);
         this.library.add(aliens);

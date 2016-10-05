@@ -52,6 +52,23 @@ public class BookTests {
         assertTrue(theWitches.checkedOut);
     }
 
+    @Test
+    public void borrowerOfBookShouldBeCheckedIn() throws Exception {
+        assertEquals(theGodOfSmallThings.getborrower(), "book is in library");
+    }
+    @Test
+    public void borrowerOfBookShouldBeCheckedInAfterBookIsReturned() throws Exception {
+        theGodOfSmallThings.checkOut("000-0000");
+        theGodOfSmallThings.checkIn();
+        assertEquals(theGodOfSmallThings.getborrower(), "book is in library");
+    }
+
+    @Test
+    public void checkOutBookToUserShouldWriteLibraryIDToBook() throws Exception {
+        theGodOfSmallThings.checkOut("000-0000");
+        assertEquals(theGodOfSmallThings.getborrower(), "000-0000");
+    }
+
     @After
     public void tearDown() throws Exception {
         theWitches = null;
