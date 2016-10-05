@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 public class UIStrings {
 
     public static final String userMenu = "What would you like to do?\n" +
+                "View your details? type: 'ud'\n" +
                 "Borrow an book? type: 'bb'\n" +
                 "Borrow an movie? type: 'mb'\n" +
                 "Return a book? type: 'mr'\n" +
@@ -29,5 +30,8 @@ public class UIStrings {
     public static final String credentialsAccepted = "Credentials accepted";
     public static final String userNameDoesNotExist = "Username does not exist in the system";
     public static final String incorrectPassword = "Incorrect password";
-    public static final String adminMenu = "Admin Menu";
+    public static final String adminMenu = "What would you like to do?\n" +
+            "See a list of users? type: 'u'\n" +
+            "See details of a user? type: 'd'\n" +
+            "Quit? type 'q'";
 }

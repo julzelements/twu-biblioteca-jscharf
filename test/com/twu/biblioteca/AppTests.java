@@ -21,7 +21,6 @@ public class AppTests {
     private  String email;
     private  String phoneNumber;
 
-
     private  String adminLibraryNumber;
     private  String adminPassword;
     private  String adminFirstName;
@@ -96,6 +95,7 @@ public class AppTests {
         String testLibrary = "Mr Author, The Book, 2000\n";
         assertEquals(testLibrary, library);
     }
+
 
     @Test
     public void testAppShouldDisplayMovies() throws Exception {
@@ -191,7 +191,19 @@ public class AppTests {
 
     @Test
     public void displayUserDetailsShouldFormatUserDetails() throws Exception {
+        UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(anyString())).thenReturn(libraryNumber, password, "ud", "q");
 
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
+        app.run();
+
+        String expectedDetails =
+                "Library number: " + libraryNumber + "\n" +
+                "Name: " + firstName + " " + lastName + "\n" +
+                "Email: " + email + "\n" +
+                "Phone number: " + phoneNumber;
+
+        assertTrue(byteArrayOutputStream.toString().contains(expectedDetails));
     }
 
     @After

@@ -36,6 +36,7 @@ public class BibliotecaApp {
             else if (choice.equals("mb")) borrowMovie();
             else if (choice.equals("bd")) displayBooks();
             else if (choice.equals("md")) displayMovies();
+            else if (choice.equals("ud")) displayUserDetails();
             else if (choice.equals("q")) {
                 outputStream.println(UIStrings.quit);
                 break;
@@ -131,6 +132,10 @@ public class BibliotecaApp {
         }
     }
 
+    public void displayUserDetails() {
+        outputStream.println(formattedUserDetails());
+    }
+
     public void validateCredentials() {
         String libraryNumber;
         String password;
@@ -166,4 +171,11 @@ public class BibliotecaApp {
         }
     }
 
+    public String formattedUserDetails() {
+       String formattedDetails =  "Library number: " + currentUser.getLibraryNumber() + "\n" +
+                "Name: " + currentUser.getFirstName() + " " + currentUser.getLastName() + "\n" +
+                "Email: " + currentUser.getEmail() + "\n" +
+                "Phone number: " + currentUser.getPhoneNumber() + "\n";
+    return formattedDetails;
+    }
 }

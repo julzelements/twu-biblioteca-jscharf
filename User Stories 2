@@ -10,6 +10,8 @@ so I can enjoy it at home.
 User Accounts - Login -
 As a librarian, I want to know who has checked out a book,
 so that I can hold them accountable for returning it.
+
+DONE:
 Users must now login using their library number (which is in the format xxx-xxxx)
 and a password in order to check-out and return books.
 User credentials are predefined, so registering new users is not part of this story.
