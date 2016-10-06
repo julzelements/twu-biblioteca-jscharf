@@ -51,7 +51,7 @@ public class AppTests {
     private Library getTestLibrary() {
         library = new Library();
         library.add(new Book("The Book", "Mr Author", "2000"));
-        library.add(new Movie("Alien", "Ridley Scott", "1979", "10", "checked in"));
+        library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
         return library;
     }
 
@@ -90,7 +90,7 @@ public class AppTests {
     @Test
     public void testBibiliotecaAppShouldDisplayLibrary() {
         app = new BibliotecaApp(outputStream, library, userInput, loginValidator);
-        app.displayBooks();
+        app.displayAvailableBooks();
         String library = byteArrayOutputStream.toString();
         String testLibrary = "Mr Author, The Book, 2000\n";
         assertEquals(testLibrary, library);
@@ -100,7 +100,7 @@ public class AppTests {
     @Test
     public void testAppShouldDisplayMovies() throws Exception {
         app = new BibliotecaApp(outputStream, library, userInput, loginValidator);
-        app.displayMovies();
+        app.displayAvailableMovies();
         String library = byteArrayOutputStream.toString();
         String testLibrary = "Ridley Scott, Alien, 1979, 10 stars\n";
         assertEquals(testLibrary, library);
@@ -204,6 +204,43 @@ public class AppTests {
                 "Phone number: " + phoneNumber;
 
         assertTrue(byteArrayOutputStream.toString().contains(expectedDetails));
+    }
+
+    @Test
+    public void getBookDetailsShouldReturnBookIsInLibrary() throws Exception {
+        UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(anyString())).thenReturn(adminLibraryNumber, adminPassword, "b", "The Book", "q");
+
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
+        app.run();
+
+        assertTrue(byteArrayOutputStream.toString().contains("book is in library"));
+    }
+
+    @Test
+    public void getBookDetailsShouldReturnLibraryNumber() throws Exception {
+        UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(anyString())).thenReturn(adminLibraryNumber, adminPassword, "bd", "q");
+
+        library.borrowBook("The Book", libraryNumber);
+
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
+        app.run();
+
+        assertTrue(byteArrayOutputStream.toString().contains(libraryNumber));
+    }
+
+    @Test
+    public void getMovieDetailsShouldReturnLibraryNumber() throws Exception {
+        UserInput mockUserInput = mock(UserInput.class);
+        when(mockUserInput.getString(anyString())).thenReturn(adminLibraryNumber, adminPassword, "md", "q");
+
+        library.borrowMovie("Alien", libraryNumber);
+
+        app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
+        app.run();
+
+        assertTrue(byteArrayOutputStream.toString().contains(libraryNumber));
     }
 
     @After

@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package bibliotecaExceptions;
 
 /**
  * Created by jscharf on 21/09/2016.

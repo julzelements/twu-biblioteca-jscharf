@@ -15,9 +15,9 @@ public class MovieTests {
 
     @Before
     public void setUp() throws Exception {
-        highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2", "checked in");
-        aliens = new Movie("Aliens", "James Cameron", "1986", "9", "checked in");
-        aliens2 = new Movie("Aliens", "James Cameron", "1986", "9", "checked in");
+        highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
+        aliens = new Movie("Aliens", "James Cameron", "1986", "9");
+        aliens2 = new Movie("Aliens", "James Cameron", "1986", "9");
     }
 
     @Test

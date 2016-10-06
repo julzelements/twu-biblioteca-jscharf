@@ -3,13 +3,11 @@ package com.twu.biblioteca;
 public class Movie extends Article{
     final String director;
     final String rating;
-    private String checkedOutTo;
 
-    public Movie(String title, String director, String year, String rating, String checkedOutTo) {
+    public Movie(String title, String director, String year, String rating) {
         super(title, year);
         this.director = director;
         this.rating = rating;
-        this.checkedOutTo = checkedOutTo;
     }
 
     @Override

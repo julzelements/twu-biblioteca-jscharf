@@ -1,5 +1,10 @@
 package com.twu.biblioteca;
 
+import bibliotecaExceptions.ArticleDoesNotExistInLibraryException;
+import bibliotecaExceptions.ArticleIsAlreadyCheckedInException;
+import bibliotecaExceptions.ArticleIsCurrentlyCheckedOutException;
+import bibliotecaExceptions.InvalidArticleToReturnException;
+
 import java.util.*;
 
 public class Library {
@@ -72,23 +77,30 @@ public class Library {
 
     }
 
-    public boolean borrowBook(String title) throws ArticleDoesNotExistInLibraryException, ArticleIsCurrentlyCheckedOutException {
-        return borrowArticle(title, books);
+    public boolean borrowBook(String title, String userLibraryNumber) throws ArticleDoesNotExistInLibraryException, ArticleIsCurrentlyCheckedOutException {
+        return borrowArticle(title, books, userLibraryNumber);
     }
 
-    public boolean borrowMovie(String title) throws ArticleDoesNotExistInLibraryException, ArticleIsCurrentlyCheckedOutException {
-        return borrowArticle(title, movies);
+    public boolean borrowMovie(String title, String userLibraryNumber) throws ArticleDoesNotExistInLibraryException, ArticleIsCurrentlyCheckedOutException {
+        return borrowArticle(title, movies, userLibraryNumber);
     }
 
-    private boolean borrowArticle(String title, HashMap<String, Article> collection) throws ArticleDoesNotExistInLibraryException, ArticleIsCurrentlyCheckedOutException {
+    private boolean borrowArticle(String title, HashMap<String, Article> collection, String userLibraryNumber) throws ArticleDoesNotExistInLibraryException, ArticleIsCurrentlyCheckedOutException {
         if (!articleExistsInCatalog(title)) {
             throw new ArticleDoesNotExistInLibraryException();
         } else if (collection.get(title).checkedOut) {
             throw new ArticleIsCurrentlyCheckedOutException();
         } else {
-            collection.get(title).checkOut("fix me");
+            collection.get(title).checkOut(userLibraryNumber);
             return true;
         }
     }
 
+    public Book getBook(String title) throws ArticleDoesNotExistInLibraryException{
+        if (articleExistsInCatalog(title)) {
+            return (Book) books.get(title);
+        } else {
+            throw new ArticleDoesNotExistInLibraryException();
+        }
+    }
 }

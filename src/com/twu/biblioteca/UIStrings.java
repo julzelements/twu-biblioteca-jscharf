@@ -30,8 +30,9 @@ public class UIStrings {
     public static final String credentialsAccepted = "Credentials accepted";
     public static final String userNameDoesNotExist = "Username does not exist in the system";
     public static final String incorrectPassword = "Incorrect password";
+    public static final String bookDetails = "Type the title of the book you would like to see details for";
     public static final String adminMenu = "What would you like to do?\n" +
-            "See a list of users? type: 'u'\n" +
-            "See details of a user? type: 'd'\n" +
+            "See all book details? type: 'bd'\n" +
+            "See all movie details? type: 'md'\n" +
             "Quit? type 'q'";
 }

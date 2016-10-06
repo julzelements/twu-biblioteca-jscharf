@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import bibliotecaExceptions.ArticleDoesNotExistInLibraryException;
+import bibliotecaExceptions.ArticleIsAlreadyCheckedInException;
+import bibliotecaExceptions.InvalidArticleToReturnException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +20,25 @@ public class LibraryTests {
         initializeLibrary();
     }
 
+    public void initializeLibrary() {
+        Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
+        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
+        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
+
+        this.library.add(theGodOfSmallThings);
+        this.library.add(theWitches);
+        this.library.add(leviathanWakes);
+
+        Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2");
+        Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9");
+        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7");
+
+        this.library.add(highlander);
+        this.library.add(aliens);
+        this.library.add(theWitchesMovie);
+
+    }
+
     @Test
     public void testGetAvailableBooksShouldReturn3Books() throws Exception {
         assertTrue(library.getAvailableBooks().size() == 3);
@@ -27,17 +49,17 @@ public class LibraryTests {
         assertTrue(library.getAvailableMovies().size() == 3);
     }
 
+
     @Test
     public void testRemoveBookFromLibraryShouldReturn2Books() throws Exception {
-            library.borrowBook("Leviathan Wakes");
+            library.borrowBook("Leviathan Wakes", "000-0000");
             assertTrue(library.getAvailableBooks().size() == 2);
     }
 
-
     @Test
     public void testRemoveTwoBooksFromLibrary() throws Exception {
-        library.borrowBook("Leviathan Wakes");
-        library.borrowBook("The God of Small Things");
+        library.borrowBook("Leviathan Wakes", "000-0000");
+        library.borrowBook("The God of Small Things", "000-0000");
         Collection<Article> books = library.getAvailableBooks();
         assertTrue(books.size() == 1);
     }
@@ -46,7 +68,7 @@ public class LibraryTests {
     public void testRemoveNonExistentBookFromLibrary() throws Exception {
         boolean exceptionWasThrown = false;
         try {
-            library.borrowBook("The man who wasn't there");
+            library.borrowBook("The man who wasn't there", "000-0000");
         } catch (ArticleDoesNotExistInLibraryException ex) {
             exceptionWasThrown = true;
         }
@@ -55,7 +77,7 @@ public class LibraryTests {
 
     @Test
     public void borrowBookWithMovieTitleShouldOnlyBorrowBook() throws Exception {
-        library.borrowBook("The Witches");
+        library.borrowBook("The Witches", "000-0000");
         assertTrue(library.getAvailableBooks().size()==2);
         assertTrue(library.getAvailableMovies().size()==3);
     }
@@ -75,7 +97,7 @@ public class LibraryTests {
     @Test
     public void libraryShouldHaveOnlyTwoBooksAfterBorrowingOneFromTheLibrary() throws Exception {
         assertEquals(library.getAvailableBooks().size(), 3);
-        library.borrowBook("Leviathan Wakes");
+        library.borrowBook("Leviathan Wakes", "000-0000");
         assertEquals(library.getAvailableBooks().size(), 2);
     }
 
@@ -109,7 +131,7 @@ public class LibraryTests {
 
         @Test
     public void testAddShouldAddAMovieExpectMovieToBeAdded() throws Exception {
-            library.add(new Movie("Alien", "Ridley Scott", "1979", "10", "checked in"));
+            library.add(new Movie("Alien", "Ridley Scott", "1979", "10"));
             assertTrue(library.articleExistsInCatalog("Alien"));
     }
 
@@ -118,22 +140,24 @@ public class LibraryTests {
         assertFalse(library.articleExistsInCatalog("The Vanishing"));
     }
 
-    public void initializeLibrary() {
-        Book theGodOfSmallThings = new Book("The God of Small Things", "Arundhati Roy", "1997");
-        Book theWitches = new Book("The Witches", "Roald Dahl", "1983");
-        Book leviathanWakes = new Book("Leviathan Wakes", "James S. A. Corey", "2011");
-
-        this.library.add(theGodOfSmallThings);
-        this.library.add(theWitches);
-        this.library.add(leviathanWakes);
-
-        Movie highlander = new Movie("Highlander", "Russell Mulcahy", "1986", "2", "checked in");
-        Movie aliens = new Movie("Aliens", "James Cameron", "1986", "9", "checked in");
-        Movie theWitchesMovie = new Movie("The Witches", "Nicholas Roeg", "1990", "7", "checked in");
-
-        this.library.add(highlander);
-        this.library.add(aliens);
-        this.library.add(theWitchesMovie);
-
+    @Test
+    public void getBookShouldReturnNotNull() throws Exception {
+        Book testBook = library.getBook("The Witches");
+        assertNotNull(testBook);
     }
+
+    @Test
+    public void borrowBookShouldWriteLibraryIDToBook() throws Exception {
+        library.borrowBook("The Witches", "000-0000");
+        Book testBook = library.getBook("The Witches");
+        assertEquals(testBook.borrower, "000-0000");
+    }
+
+    @Test
+    public void bookThatIsCheckedInShouldNotHaveLibraryID() throws Exception {
+        Book testBook = library.getBook("The Witches");
+        assertEquals(testBook.borrower, "book is in library");
+    }
+
+
 }

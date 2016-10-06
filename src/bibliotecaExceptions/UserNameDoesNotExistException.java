@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package bibliotecaExceptions;
 
 public class UserNameDoesNotExistException extends Exception {
 }
