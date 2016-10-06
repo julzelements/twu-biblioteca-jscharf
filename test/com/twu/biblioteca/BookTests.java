@@ -53,11 +53,11 @@ public class BookTests {
     }
 
     @Test
-    public void borrowerOfBookShouldBeBookIsInTheLibrary() throws Exception {
+    public void borrowerOfBookShouldBeCheckedIn() throws Exception {
         assertEquals(theGodOfSmallThings.getborrower(), "book is in library");
     }
     @Test
-    public void borrowerOfBookShouldBeBookIsInTheLibraryAfterBookIsReturned() throws Exception {
+    public void borrowerOfBookShouldBeCheckedInAfterBookIsReturned() throws Exception {
         theGodOfSmallThings.checkOut("000-0000");
         theGodOfSmallThings.checkIn();
         assertEquals(theGodOfSmallThings.getborrower(), "book is in library");

@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import bibliotecaExceptions.*;
-
 import java.io.PrintStream;
 
 public class BibliotecaApp {
@@ -11,12 +9,14 @@ public class BibliotecaApp {
     PrintStream outputStream;
     LoginValidator loginValidator;
     User currentUser;
+    LibraryHelper libraryHelper;
 
-    public BibliotecaApp(PrintStream outputStream, Library library, UserInput userInput, LoginValidator loginValidator) {
+    public BibliotecaApp(PrintStream outputStream, Library library, UserInput userInput, LoginValidator loginValidator, LibraryHelper libraryHelper) {
         this.library = library;
         this.outputStream = outputStream;
         this.userInput = userInput;
         this.loginValidator = loginValidator;
+        this.libraryHelper = libraryHelper;
     }
 
     public void run() {
@@ -32,12 +32,12 @@ public class BibliotecaApp {
     public void userWelcomeOptions() {
         while (true) {
             String choice = userInput.getString(UIStrings.userMenu);
-            if (choice.equals("bb")) borrowBook();
+            if (choice.equals("bb")) libraryHelper.borrowBook(currentUser);
             else if (choice.equals("br")) returnBook();
             else if (choice.equals("mr")) returnMovie();
             else if (choice.equals("mb")) borrowMovie();
-            else if (choice.equals("bd")) displayAvailableBooks();
-            else if (choice.equals("md")) displayAvailableMovies();
+            else if (choice.equals("bd")) displayBooks();
+            else if (choice.equals("md")) displayMovies();
             else if (choice.equals("ud")) displayUserDetails();
             else if (choice.equals("q")) {
                 outputStream.println(UIStrings.quit);
@@ -51,8 +51,9 @@ public class BibliotecaApp {
     public void adminWelcomeOptions() {
         while (true) {
             String choice = userInput.getString(UIStrings.adminMenu);
-                 if (choice.equals("bd")) displayAllBooks();
-            else if (choice.equals("md")) displayAllMovies();
+            if (choice.equals("bb")) borrowBook();
+            else if (choice.equals("bd")) displayBooks();
+            else if (choice.equals("md")) displayMovies();
             else if (choice.equals("q")) {
                 outputStream.println(UIStrings.quit);
                 break;
@@ -62,6 +63,8 @@ public class BibliotecaApp {
         }
     }
 
+<<<<<<< HEAD
+||||||| 8e63d57... Added the functionality for seeing book and movie details
     public void borrowBook() {
         boolean success = false;
         try {
@@ -75,11 +78,26 @@ public class BibliotecaApp {
             outputStream.println(UIStrings.successfulBorrow);
         }
     }
+=======
+    public void borrowBook() {
+        boolean success = false;
+        try {
+            success = library.borrowBook(userInput.getString(UIStrings.borrow));
+        } catch (ArticleDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
+            outputStream.println(UIStrings.articleDoesNotExist);
+        } catch (ArticleIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
+            outputStream.println(UIStrings.articleIsCheckedOut);
+        }
+        if (success) {
+            outputStream.println(UIStrings.successfulBorrow);
+        }
+    }
+>>>>>>> parent of 8e63d57... Added the functionality for seeing book and movie details
 
     public void borrowMovie() {
         boolean success = false;
         try {
-            success = library.borrowMovie(userInput.getString(UIStrings.borrow), currentUser.getLibraryNumber());
+            success = library.borrowMovie(userInput.getString(UIStrings.borrow));
         } catch (ArticleDoesNotExistInLibraryException BookDoesNotExistInLibraryEx) {
             outputStream.println(UIStrings.articleDoesNotExist);
         } catch (ArticleIsCurrentlyCheckedOutException bookIsCurrentlyCheckedOutEx) {
@@ -118,32 +136,18 @@ public class BibliotecaApp {
         }
     }
 
-    public void displayAvailableBooks() {
+
+    public void displayBooks() {
         for (Article article : library.getAvailableBooks()) {
             Book book = (Book) article;
             outputStream.println(book.author + ", " + book.title + ", " + book.year);
         }
     }
 
-    public void displayAllBooks() {
-        for (Article article : library.books.values() ){
-            Book book= (Book) article;
-            outputStream.println(book.author + ", " + book.title + ", " + book.year);
-            outputStream.println(book.title + " is borrowed by: " + book.borrower + "\n");
-        }
-    }
-
-    public void displayAvailableMovies() {
+    public void displayMovies() {
         for (Article article : library.getAvailableMovies()) {
             Movie movie = (Movie) article;
             outputStream.println(movie.director + ", " + movie.title + ", " + movie.year + ", " + movie.rating + " stars");
-        }
-    }
-    public void displayAllMovies() {
-        for (Article article : library.movies.values()) {
-            Movie movie = (Movie) article;
-            outputStream.println(movie.director + ", " + movie.title + ", " + movie.year + ", " + movie.rating + " stars");
-            outputStream.println(movie.title + " is borrowed by: " + movie.borrower + "\n");
         }
     }
 
