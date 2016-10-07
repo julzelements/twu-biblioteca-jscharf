@@ -209,7 +209,7 @@ public class AppTests {
     @Test
     public void getBookDetailsShouldReturnBookIsInLibrary() throws Exception {
         UserInput mockUserInput = mock(UserInput.class);
-        when(mockUserInput.getString(anyString())).thenReturn(adminLibraryNumber, adminPassword, "b", "The Book", "q");
+        when(mockUserInput.getString(anyString())).thenReturn(adminLibraryNumber, adminPassword, "bd", "q");
 
         app = new BibliotecaApp(outputStream, library, mockUserInput, loginValidator);
         app.run();
