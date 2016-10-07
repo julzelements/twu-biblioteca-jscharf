@@ -1,5 +1,9 @@
 Please see the user stories to test the program.
 
+Project SDK is Java 1.7
+
+run gradle build in the biblioteca directory to get all dependencies.
+
 Main method to launch application is in src/com.twu.biblioteca/Main.java
 
 Cheers. : -)
