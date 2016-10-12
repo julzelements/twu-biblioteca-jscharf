@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-import bibliotecaExceptions.IncorrectPasswordException;
-import bibliotecaExceptions.UserNameDoesNotExistException;
+import Exceptions.IncorrectPasswordException;
+import Exceptions.UserNameDoesNotExistException;
 import org.junit.Before;
 import org.junit.Test;
 

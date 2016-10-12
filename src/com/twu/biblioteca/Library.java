@@ -1,9 +1,9 @@
 package com.twu.biblioteca;
 
-import bibliotecaExceptions.ArticleDoesNotExistInLibraryException;
-import bibliotecaExceptions.ArticleIsAlreadyCheckedInException;
-import bibliotecaExceptions.ArticleIsCurrentlyCheckedOutException;
-import bibliotecaExceptions.InvalidArticleToReturnException;
+import Exceptions.ArticleDoesNotExistInLibraryException;
+import Exceptions.ArticleIsAlreadyCheckedInException;
+import Exceptions.ArticleIsCurrentlyCheckedOutException;
+import Exceptions.InvalidArticleToReturnException;
 
 import java.util.*;
 

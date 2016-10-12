@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import bibliotecaExceptions.*;
+import Exceptions.*;
 
 import java.io.PrintStream;
 

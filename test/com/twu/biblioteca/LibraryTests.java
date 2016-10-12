@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
-import bibliotecaExceptions.ArticleDoesNotExistInLibraryException;
-import bibliotecaExceptions.ArticleIsAlreadyCheckedInException;
-import bibliotecaExceptions.InvalidArticleToReturnException;
+import Exceptions.ArticleDoesNotExistInLibraryException;
+import Exceptions.ArticleIsAlreadyCheckedInException;
+import Exceptions.InvalidArticleToReturnException;
 import org.junit.Before;
 import org.junit.Test;
 

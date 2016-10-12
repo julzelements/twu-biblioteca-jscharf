@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-import bibliotecaExceptions.IncorrectPasswordException;
-import bibliotecaExceptions.UserNameDoesNotExistException;
+import Exceptions.IncorrectPasswordException;
+import Exceptions.UserNameDoesNotExistException;
 
 public class LoginValidator {
 
